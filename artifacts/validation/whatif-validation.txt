@@ -1,0 +1,757 @@
+﻿
+
+ScriptPath : C:\Users\Bob\Documents\sysadmin-Powershell.5\PowerShell Script\Adobe\Install.AdobeAcrobat.Clean.ps1
+ExitCode   : 0
+Success    : True
+Output     : 
+             
+             PackagePath         : C:\Install\Adobe\AcrobatInstaller.msi
+             RemovedProductCount : 0
+             RemovedProducts     : 
+             RestartRequired     : False
+             LogDirectory        : C:\ProgramData\sysadmin-main\Logs\AdobeAcrobat
+             Status              : Skipped
+             Reason              : PackagePathNotFound
+             
+             
+             
+
+ScriptPath : C:\Users\Bob\Documents\sysadmin-Powershell.5\PowerShell Script\Printer\Delete.all.offline.printer.ps1
+ExitCode   : 0
+Success    : True
+Output     : 
+             
+             PrinterStatus : Offline
+             PrinterCount  : 0
+             RemovedCount  : 0
+             Status        : WhatIf
+             Reason        : 
+             
+             
+             
+
+ScriptPath : C:\Users\Bob\Documents\sysadmin-Powershell.5\PowerShell Script\Printer\Deleter.NamePrinter.ps1
+ExitCode   : 0
+Success    : True
+Output     : 
+             
+             NamePattern  : *NAMEPRINTER*
+             PrinterCount : 0
+             RemovedCount : 0
+             Status       : Skipped
+             Reason       : NamePatternNotConfigured
+             
+             
+             
+
+ScriptPath : C:\Users\Bob\Documents\sysadmin-Powershell.5\PowerShell Script\Printer\Export.printer.list.BASIC.ps1
+ExitCode   : 0
+Success    : True
+Output     : What if: Performing the operation "Export printer list" on target 
+             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260326-175504832.csv".
+             
+             
+             OutputPath    : 
+             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260326-175504832.csv
+             PrinterCount  : 1
+             ExportProfile : Basic
+             Status        : WhatIf
+             Reason        : 
+             
+             
+             
+
+ScriptPath : C:\Users\Bob\Documents\sysadmin-Powershell.5\PowerShell Script\Printer\Export.printer.list.FULL.ps1
+ExitCode   : 0
+Success    : True
+Output     : What if: Performing the operation "Export printer list" on target 
+             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260326-175505894.csv".
+             
+             
+             OutputPath    : 
+             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260326-175505894.csv
+             PrinterCount  : 1
+             ExportProfile : Full
+             Status        : WhatIf
+             Reason        : 
+             
+             
+             
+
+ScriptPath : C:\Users\Bob\Documents\sysadmin-Powershell.5\PowerShell Script\Printer\Restart.spool.delete.printerQ.ps1
+ExitCode   : 0
+Success    : True
+Output     : What if: Performing the operation "Stop service" on target "Spooler".
+             
+             
+             ServiceName  : Spooler
+             QueuePath    : C:\WINDOWS\System32\spool\PRINTERS
+             FileCount    : 0
+             DeletedCount : 0
+             ServiceWasUp : True
+             Status       : WhatIf
+             Reason       : 
+             
+             
+             
+
+ScriptPath : C:\Users\Bob\Documents\sysadmin-Powershell.5\PowerShell 
+             Script\Printer\Restart.Spool.DeletePrinterQSimple.ps1
+ExitCode   : 0
+Success    : True
+Output     : What if: Performing the operation "Stop service" on target "Spooler".
+             
+             
+             ServiceName  : Spooler
+             QueuePath    : C:\WINDOWS\System32\spool\PRINTERS
+             FileCount    : 0
+             DeletedCount : 0
+             Status       : WhatIf
+             
+             
+             
+
+ScriptPath : C:\Users\Bob\Documents\sysadmin-Powershell.5\PowerShell Script\Printer\restart.SpoolDeleteQV4.ps1
+ExitCode   : 0
+Success    : True
+Output     : What if: Performing the operation "Stop Print Spooler" on target "Spooler".
+             
+             
+             ServiceName  : Spooler
+             Service      : Spooler
+             QueuePath    : C:\WINDOWS\System32\spool\PRINTERS
+             LogPath      : C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20260326-175508288-f5e4ac0f.log
+             FileCount    : 0
+             DeletedCount : 0
+             DeletedFiles : 0
+             ServiceWasUp : True
+             Status       : WhatIf
+             Success      : True
+             WhatIfRun    : True
+             
+             
+             
+
+ScriptPath : C:\Users\Bob\Documents\sysadmin-Powershell.5\PowerShell 
+             Script\windows-maintenance\Move-OrphanedInstallerFiles.ps1
+ExitCode   : 0
+Success    : True
+Output     : What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\1760cd.msi" on target 
+             "C:\Windows\Installer\1760cd.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\1987b6.msi" on target 
+             "C:\Windows\Installer\1987b6.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\1987cc.msi" on target 
+             "C:\Windows\Installer\1987cc.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\1987e2.msi" on target 
+             "C:\Windows\Installer\1987e2.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\2a8bc8.msi" on target 
+             "C:\Windows\Installer\2a8bc8.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\4beeab5.msi" on target 
+             "C:\Windows\Installer\4beeab5.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\4beeb9f.msi" on target 
+             "C:\Windows\Installer\4beeb9f.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\5739fb4.msi" on target 
+             "C:\Windows\Installer\5739fb4.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a007.msi" on target 
+             "C:\Windows\Installer\573a007.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a01a.msi" on target 
+             "C:\Windows\Installer\573a01a.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a034.msi" on target 
+             "C:\Windows\Installer\573a034.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a062.msi" on target 
+             "C:\Windows\Installer\573a062.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a06e.msi" on target 
+             "C:\Windows\Installer\573a06e.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a189.msi" on target 
+             "C:\Windows\Installer\573a189.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\93eb77.msi" on target 
+             "C:\Windows\Installer\93eb77.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3dc67.msi" on target 
+             "C:\Windows\Installer\a3dc67.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3dc6f.msi" on target 
+             "C:\Windows\Installer\a3dc6f.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3dc88.msi" on target 
+             "C:\Windows\Installer\a3dc88.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3dcad.msi" on target 
+             "C:\Windows\Installer\a3dcad.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3e0c9.msi" on target 
+             "C:\Windows\Installer\a3e0c9.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\eab27d3.msi" on target 
+             "C:\Windows\Installer\eab27d3.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\fa2eb44.msi" on target 
+             "C:\Windows\Installer\fa2eb44.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\fa2eb60.msi" on target 
+             "C:\Windows\Installer\fa2eb60.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Collision.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Collision.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-01.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-01.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-02.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-02.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-03.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-03.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-04.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-04.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-05.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-05.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-06.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-06.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-07.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-07.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-08.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-08.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-09.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-09.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-10.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-10.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-11.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-11.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-12.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-12.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-13.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-13.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-14.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-14.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-15.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-15.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-16.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-16.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-17.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-17.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-18.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-18.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-19.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-19.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-20.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-20.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-21.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-21.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-22.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-22.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-23.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-23.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-24.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-24.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-25.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-25.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-26.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-26.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-27.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-27.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-28.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-28.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-29.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-29.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-30.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-30.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-31.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-31.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-32.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-32.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-33.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-33.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-34.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-34.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-35.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-35.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-36.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-36.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-37.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-37.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-38.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-38.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-39.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-39.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-40.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-40.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-41.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-41.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-42.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-42.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-43.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-43.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-44.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-44.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-45.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-45.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-46.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-46.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-47.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-47.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-48.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-48.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-49.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-49.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-50.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-50.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-51.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-51.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-52.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-52.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-53.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-53.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-54.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-54.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-55.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-55.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-56.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-56.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-57.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-57.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-58.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-58.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-59.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-59.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-60.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-60.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-61.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-61.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-62.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-62.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-63.msp" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-63.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-64.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Filler-64.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Move.msi" on target 
+             "C:\Windows\Installer\PatchCleaner-Sandbox-Move.msi".
+             
+             
+             InstallerPath : C:\Windows\Installer
+             BackupPath    : C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans
+             FileCount     : 250
+             OrphanCount   : 89
+             MovedCount    : 0
+             Status        : WhatIf
+             Reason        : 
+             
+             
+             
+
+ScriptPath : C:\Users\Bob\Documents\sysadmin-Powershell.5\PowerShell 
+             Script\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1
+ExitCode   : 0
+Success    : True
+Output     : 
+             
+             CleanupPathCount : 19
+             RemovedCount     : 0
+             RemoveWindowsOld : False
+             ComponentCleanup : True
+             Status           : Skipped
+             Reason           : AdminPreviewRequired
+             
+             
+             
+
+ScriptPath : C:\Users\Bob\Documents\sysadmin-Powershell.5\PowerShell 
+             Script\windows-maintenance\Nettoyage.Complet.Caches.Windows.ps1
+ExitCode   : 0
+Success    : True
+Output     : 
+             
+             CleanupPathCount : 3
+             RemovedCount     : 0
+             FlushDns         : True
+             ClearRecycleBin  : True
+             Status           : Skipped
+             Reason           : AdminPreviewRequired
+             
+             
+             
+
+ScriptPath : C:\Users\Bob\Documents\sysadmin-Powershell.5\PowerShell 
+             Script\windows-maintenance\Reset.Network.RebootPC.ps1
+ExitCode   : 0
+Success    : True
+Output     : What if: Performing the operation "Run command" on target "C:\WINDOWS\System32\netsh.exe int ip reset".
+             What if: Performing the operation "Run command" on target "C:\WINDOWS\System32\netsh.exe winsock reset".
+             What if: Performing the operation "Run command" on target "C:\WINDOWS\System32\ipconfig.exe /release".
+             What if: Performing the operation "Run command" on target "C:\WINDOWS\System32\ipconfig.exe /flushdns".
+             What if: Performing the operation "Run command" on target "C:\WINDOWS\System32\ipconfig.exe /renew".
+             What if: Performing the operation "Restart in 5 seconds" on target "Local computer".
+             
+             
+             CommandCount       : 5
+             ExecutedCount      : 0
+             RebootDelaySeconds : 5
+             Status             : WhatIf
+             Reason             : 
+             
+             
+             
+
+ScriptPath : C:\Users\Bob\Documents\sysadmin-Powershell.5\PowerShell Script\WindowsServer\FichierOphelin.ps1
+ExitCode   : 0
+Success    : True
+Output     : What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\1760cd.msi" on target 
+             "C:\WINDOWS\Installer\1760cd.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\1987b6.msi" on target 
+             "C:\WINDOWS\Installer\1987b6.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\1987cc.msi" on target 
+             "C:\WINDOWS\Installer\1987cc.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\1987e2.msi" on target 
+             "C:\WINDOWS\Installer\1987e2.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\2a8bc8.msi" on target 
+             "C:\WINDOWS\Installer\2a8bc8.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\4beeab5.msi" on target 
+             "C:\WINDOWS\Installer\4beeab5.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\4beeb9f.msi" on target 
+             "C:\WINDOWS\Installer\4beeb9f.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\5739fb4.msi" on target 
+             "C:\WINDOWS\Installer\5739fb4.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a007.msi" on target 
+             "C:\WINDOWS\Installer\573a007.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a01a.msi" on target 
+             "C:\WINDOWS\Installer\573a01a.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a034.msi" on target 
+             "C:\WINDOWS\Installer\573a034.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a062.msi" on target 
+             "C:\WINDOWS\Installer\573a062.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a06e.msi" on target 
+             "C:\WINDOWS\Installer\573a06e.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\573a189.msi" on target 
+             "C:\WINDOWS\Installer\573a189.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\93eb77.msi" on target 
+             "C:\WINDOWS\Installer\93eb77.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3dc67.msi" on target 
+             "C:\WINDOWS\Installer\a3dc67.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3dc6f.msi" on target 
+             "C:\WINDOWS\Installer\a3dc6f.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3dc88.msi" on target 
+             "C:\WINDOWS\Installer\a3dc88.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3dcad.msi" on target 
+             "C:\WINDOWS\Installer\a3dcad.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\a3e0c9.msi" on target 
+             "C:\WINDOWS\Installer\a3e0c9.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\eab27d3.msi" on target 
+             "C:\WINDOWS\Installer\eab27d3.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\fa2eb44.msi" on target 
+             "C:\WINDOWS\Installer\fa2eb44.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\fa2eb60.msi" on target 
+             "C:\WINDOWS\Installer\fa2eb60.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Collision.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Collision.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-01.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-01.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-02.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-02.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-03.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-03.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-04.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-04.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-05.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-05.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-06.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-06.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-07.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-07.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-08.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-08.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-09.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-09.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-10.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-10.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-11.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-11.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-12.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-12.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-13.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-13.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-14.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-14.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-15.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-15.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-16.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-16.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-17.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-17.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-18.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-18.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-19.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-19.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-20.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-20.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-21.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-21.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-22.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-22.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-23.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-23.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-24.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-24.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-25.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-25.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-26.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-26.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-27.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-27.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-28.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-28.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-29.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-29.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-30.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-30.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-31.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-31.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-32.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-32.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-33.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-33.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-34.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-34.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-35.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-35.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-36.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-36.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-37.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-37.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-38.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-38.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-39.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-39.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-40.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-40.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-41.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-41.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-42.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-42.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-43.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-43.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-44.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-44.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-45.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-45.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-46.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-46.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-47.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-47.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-48.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-48.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-49.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-49.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-50.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-50.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-51.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-51.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-52.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-52.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-53.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-53.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-54.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-54.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-55.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-55.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-56.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-56.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-57.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-57.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-58.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-58.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-59.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-59.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-60.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-60.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-61.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-61.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-62.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-62.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-63.msp" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-63.msp".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Filler-64.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Filler-64.msi".
+             What if: Performing the operation "Move to 
+             C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans\PatchCleaner-Sandbox-Move.msi" on target 
+             "C:\WINDOWS\Installer\PatchCleaner-Sandbox-Move.msi".
+             
+             
+             InstallerPath : C:\WINDOWS\Installer
+             BackupFolder  : C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans
+             FileCount     : 250
+             OrphanCount   : 89
+             MovedCount    : 0
+             Status        : WhatIf
+             Reason        : 
+             
+             
+             
+
+
+
+

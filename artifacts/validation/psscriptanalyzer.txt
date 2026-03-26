@@ -1,0 +1,15 @@
+﻿PSScriptAnalyzer Report
+Generated  : 2026-03-26 17:52:47
+Settings   : .\tools\PSScriptAnalyzerSettings.psd1
+Module     : PSScriptAnalyzer v1.25.0
+RepoRoot   : C:\Users\Bob\Documents\sysadmin-Powershell.5
+
+--- Summary ---
+Error       : 0
+Warning     : 0
+Information : 0
+Total       : 0
+
+--- Findings ---
+
+No findings.

@@ -1,5 +1,5 @@
 ﻿PSScriptAnalyzer Report
-Generated  : 2026-03-26 19:27:31
+Generated  : 2026-03-27 18:33:45
 Settings   : C:\Users\Bob\Documents\Script.PowerShell5.1\tools\PSScriptAnalyzerSettings.psd1
 Module     : PSScriptAnalyzer v1.25.0
 RepoRoot   : C:\Users\Bob\Documents\Script.PowerShell5.1

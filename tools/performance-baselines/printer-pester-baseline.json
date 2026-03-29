@@ -1,0 +1,25 @@
+﻿{
+    "Version":  1,
+    "GeneratedAt":  "2026-03-28T23:26:39",
+    "SampleCount":  3,
+    "Suites":  [
+                   {
+                       "TestPath":  "tests\\Printer\\Restart.Spool.DeletePrinterQSimple.Tests.ps1",
+                       "BaselineMedianSeconds":  2.782,
+                       "TotalCount":  3,
+                       "AllowedRegressionPercent":  50
+                   },
+                   {
+                       "TestPath":  "tests\\Printer\\Restart.spool.delete.printerQ.Tests.ps1",
+                       "BaselineMedianSeconds":  0.563,
+                       "TotalCount":  2,
+                       "AllowedRegressionPercent":  50
+                   },
+                   {
+                       "TestPath":  "tests\\Printer\\restart.SpoolDeleteQV4.Tests.ps1",
+                       "BaselineMedianSeconds":  1.097,
+                       "TotalCount":  4,
+                       "AllowedRegressionPercent":  50
+                   }
+               ]
+}

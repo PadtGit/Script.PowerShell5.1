@@ -20,8 +20,11 @@
 - `tests/*`: Pester suites for scripts and tooling.
 - `tests/TestHelpers.ps1`: shared helpers for object-based `-WhatIf` and module-import testing.
 - `tests/tools/Invoke-PSScriptAnalyzer.Tests.ps1`: regression coverage for analyzer crash-handling and stale-artifact reset behavior.
+- `tests/tools/Invoke-PerformanceRegressionCheck.Tests.ps1`: regression coverage for baseline update, missing-baseline handling, and timing-threshold failures.
 - `tools/Invoke-PSScriptAnalyzer.ps1`: analyzer runner that emits TXT, JSON, and SARIF artifacts.
+- `tools/Invoke-PerformanceRegressionCheck.ps1`: repeatable Pester timing runner that compares suite medians against a committed baseline and emits TXT plus JSON artifacts.
 - `tools/PSScriptAnalyzerSettings.psd1`: canonical analyzer settings for repo-wide validation.
+- `tools/performance-baselines/printer-pester-baseline.json`: committed timing baseline for the printer performance watch.
 - `artifacts/validation/*`: generated analyzer, Pester, and `-WhatIf` validation artifacts.
 - `sandbox/sysadmin-main-validation.wsb`: disposable Windows Sandbox profile that maps `C:\Users\Bob\Documents\sysadmin-Powershell.5` read-only into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`, disables networking and vGPU, and opens PowerShell at that path.
 - `sandbox/Start-SysadminMainSandboxShell.ps1`: Sandbox startup helper that resolves the repo root from its own location and sets that as the working directory. In Sandbox this resolves to `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
@@ -104,6 +107,20 @@ Invoke-Pester -Configuration $config
 Invoke-Pester -Path '.\tests\tools\Invoke-PSScriptAnalyzer.Tests.ps1'
 ```
 
+- Focused performance-regression workflow check:
+
+```powershell
+& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PWD 'tools\Invoke-PerformanceRegressionCheck.ps1') `
+  -EnableExit
+```
+
+- Refresh the committed printer-suite baseline intentionally:
+
+```powershell
+& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PWD 'tools\Invoke-PerformanceRegressionCheck.ps1') `
+  -UpdateBaseline
+```
+
 - Trusted local smoke checks:
 
 ```powershell
@@ -139,6 +156,7 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 4. Optional behavioral Pester coverage
    - Add or update Pester coverage when behavior, result objects, `-WhatIf` safety, or tool artifacts change.
    - Prefer behavioral and object-based assertions over brittle transcript or string-output checks.
+   - Keep performance-watch tooling covered with focused regression tests when baseline, threshold, or artifact behavior changes.
 5. Validate locally
    - Run the standard analyzer command, appropriate Pester scope, trusted smoke checks, and Windows Sandbox validation for risky scripts.
 6. Review generated artifacts
@@ -174,7 +192,10 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - Clean analyzer runs must overwrite stale JSON findings with `[]`.
 - Analyzer invocation failures should surface as `PSScriptAnalyzerInvocationFailure` diagnostics instead of being silently dropped.
 - `tests\tools\Invoke-PSScriptAnalyzer.Tests.ps1` locks in analyzer crash-handling and stale-artifact reset behavior.
+- `tests\tools\Invoke-PerformanceRegressionCheck.Tests.ps1` locks in baseline update, missing-baseline failure, and regression-threshold behavior for the performance watch.
 - CI-style Pester exports results to `artifacts/validation/pester-results.xml`.
+- `tools\Invoke-PerformanceRegressionCheck.ps1` writes `artifacts/validation/performance-regression.txt` and `artifacts/validation/performance-regression.json` by default.
+- The committed printer timing baseline lives at `tools\performance-baselines\printer-pester-baseline.json`; update it intentionally after an accepted steady-state timing change.
 - Pester 5 does not support combining `-CI` with `-Configuration`; use `New-PesterConfiguration` for CI-style NUnit XML output.
 - `sandbox\sysadmin-main-validation.wsb` maps `C:\Users\Bob\Documents\sysadmin-Powershell.5` into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main` as read-only with networking and vGPU disabled.
 - `sandbox\Start-SysadminMainSandboxShell.ps1` is the canonical way the Sandbox profile sets the in-Sandbox working directory, resolving the repo root from the helper location instead of depending on a brittle hard-coded path.
@@ -189,4 +210,5 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - 2026-03-25: Added focused analyzer-helper regression coverage and documented invocation-failure diagnostics plus stale-JSON reset behavior.
 - 2026-03-26: Flattened the runtime-specific work for Windows PowerShell 5.1 and preserved the stable in-Sandbox working folder at `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
 - 2026-03-28: Switched the Windows Sandbox profile to a helper script startup path so PowerShell opens consistently in `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
+- 2026-03-28: Added a local performance-regression workflow with committed printer-suite timing baselines plus TXT and JSON report artifacts.
 - Keep this section focused on durable repo guidance, not task-by-task narrative.

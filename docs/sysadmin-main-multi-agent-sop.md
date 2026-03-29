@@ -62,6 +62,8 @@
 - Remember that the analyzer helper now writes TXT, JSON, and SARIF outputs to `artifacts/validation/` by default.
 - Use the CI-style Pester configuration that writes results to `artifacts/validation/pester-results.xml`.
 - Keep the focused analyzer-helper regression suite at `tests/tools/Invoke-PSScriptAnalyzer.Tests.ps1` in the validation loop when changing analyzer output or failure-handling behavior.
+- Keep the focused performance-regression suite at `tests/tools/Invoke-PerformanceRegressionCheck.Tests.ps1` in the validation loop when changing timing-baseline, threshold, or artifact behavior.
 - Keep smoke checks focused on the trusted `-WhatIf` commands documented in `AGENTS.md`.
+- Use `tools/Invoke-PerformanceRegressionCheck.ps1` with the committed baseline at `tools/performance-baselines/printer-pester-baseline.json` when the workflow needs an early timing-regression pass for the printer suites.
 - Use `sandbox/sysadmin-main-validation.wsb` as the disposable validation shell for risky scripts. The profile maps `C:\Users\Bob\Documents\sysadmin-Powershell.5` read-only into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`, disables networking and vGPU, and starts PowerShell through `sandbox/Start-SysadminMainSandboxShell.ps1`, which resolves the repo root from the helper location so the working directory lands there consistently.
 - This checkout does not currently include a GitHub workflow file, so local validation commands are the authoritative workflow surface here.

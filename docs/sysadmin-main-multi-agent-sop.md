@@ -3,7 +3,7 @@
 ## Why This Shape
 
 - Use a manager-pattern workflow even in this trimmed checkout: one controller should keep the task narrative coherent while discovery, implementation, validation, review, and doc-sync responsibilities stay explicit.
-- This checkout does not currently ship repo-local `.codex/agents/*.toml`, `.agents/*`, or `.github/workflows/*` surfaces. Treat the role names below as workflow responsibilities, not as config-backed files that must exist.
+- This checkout does not currently ship repo-local `.codex/agents/*.toml` or `.agents/*` surfaces. It now includes `.github/workflows/powershell-ci.yml`; treat the role names below as workflow responsibilities, not as config-backed files that must exist.
 - Keep this SOP, `AGENTS.md`, `SKILL.md`, `README.md`, and the local validation commands aligned whenever the workflow changes.
 
 ## Repo Ground Rules
@@ -66,4 +66,4 @@
 - Keep smoke checks focused on the trusted `-WhatIf` commands documented in `AGENTS.md`.
 - Use `tools/Invoke-PerformanceRegressionCheck.ps1` with the committed baseline at `tools/performance-baselines/printer-pester-baseline.json` when the workflow needs an early timing-regression pass for the printer suites.
 - Use `sandbox/sysadmin-main-validation.wsb` as the disposable validation shell for risky scripts. The profile maps `C:\Users\Bob\Documents\sysadmin-Powershell.5` read-only into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`, disables networking and vGPU, and starts PowerShell through `sandbox/Start-SysadminMainSandboxShell.ps1`, which resolves the repo root from the helper location so the working directory lands there consistently.
-- This checkout does not currently include a GitHub workflow file, so local validation commands are the authoritative workflow surface here.
+- The GitHub Actions workflow at `.github/workflows/powershell-ci.yml` mirrors the local validation flow with `lint`, `test`, `whatif`, and `perf` jobs on Windows. Keep the workflow and the local commands aligned.

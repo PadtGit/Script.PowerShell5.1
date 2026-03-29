@@ -1,0 +1,120 @@
+name: PowerShell CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: powershell
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run PSScriptAnalyzer
+        run: |
+          & "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PWD 'tools\Invoke-PSScriptAnalyzer.ps1') `
+            -Path . `
+            -Recurse `
+            -SettingsPath (Join-Path $PWD 'tools\PSScriptAnalyzerSettings.psd1') `
+            -AutoInstallModule `
+            -EnableExit `
+            -ExitCodeMode AllDiagnostics
+
+      - name: Upload lint artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-artifacts
+          path: artifacts/validation/psscriptanalyzer.*
+          if-no-files-found: warn
+
+  test:
+    name: Test
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Pester 5
+        run: |
+          Install-Module -Name Pester -Repository PSGallery -Scope CurrentUser -Force -SkipPublisherCheck
+
+      - name: Run Pester suite
+        run: |
+          Import-Module Pester -MinimumVersion 5.0.0 -Force
+          $resultPath = Join-Path $PWD 'artifacts\validation\pester-results.xml'
+          New-Item -ItemType Directory -Force -Path (Split-Path -Path $resultPath -Parent) | Out-Null
+          $config = New-PesterConfiguration
+          $config.Run.Path = '.\tests'
+          $config.Output.Verbosity = 'Detailed'
+          $config.Run.Exit = $true
+          $config.TestResult.Enabled = $true
+          $config.TestResult.OutputPath = $resultPath
+          $config.TestResult.OutputFormat = 'NUnitXml'
+          Invoke-Pester -Configuration $config
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts
+          path: artifacts/validation/pester-results.xml
+          if-no-files-found: warn
+
+  whatif:
+    name: WhatIf
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run branch WhatIf validator
+        run: |
+          & "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File 'Invoke-WhatIfValidation.ps1'
+
+      - name: Run trusted smoke checks
+        run: |
+          & "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File '.\PowerShell Script\Printer\Restart.Spool.DeletePrinterQSimple.ps1' -WhatIf
+          & "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File '.\PowerShell Script\windows-maintenance\Nettoyage.Avance.Windows.Sauf.logserreur.ps1' -WhatIf
+
+      - name: Upload WhatIf artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: whatif-artifacts
+          path: artifacts/validation/whatif-validation.txt
+          if-no-files-found: warn
+
+  perf:
+    name: Perf
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Pester 5
+        run: |
+          Install-Module -Name Pester -Repository PSGallery -Scope CurrentUser -Force -SkipPublisherCheck
+
+      - name: Run performance regression check
+        run: |
+          Import-Module Pester -MinimumVersion 5.0.0 -Force
+          & "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PWD 'tools\Invoke-PerformanceRegressionCheck.ps1') `
+            -EnableExit
+
+      - name: Upload perf artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: perf-artifacts
+          path: |
+            artifacts/validation/performance-regression.txt
+            artifacts/validation/performance-regression.json
+          if-no-files-found: warn

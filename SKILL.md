@@ -18,6 +18,7 @@ Use the canonical script tree under `PowerShell Script/`.
 - Analyzer runner: `& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PWD 'tools\Invoke-PSScriptAnalyzer.ps1') -Path . -Recurse -SettingsPath (Join-Path $PWD 'tools\PSScriptAnalyzerSettings.psd1') -EnableExit -ExitCodeMode AllDiagnostics`
 - Performance regression check: `& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PWD 'tools\Invoke-PerformanceRegressionCheck.ps1') -EnableExit`
 - Analyzer regression tests: `Invoke-Pester -Path '.\tests\tools\Invoke-PSScriptAnalyzer.Tests.ps1'`
+- GitHub Actions workflow: `.github/workflows/powershell-ci.yml`
 
 ## Detailed Workflow
 

@@ -4,7 +4,7 @@
 
 - This branch contains Windows sysadmin PowerShell scripts for Windows PowerShell 5.1 only.
 - Treat `PowerShell Script/*` as the canonical working tree.
-- This checkout currently contains local script, test, tool, docs, sandbox, and validation-artifact surfaces only.
+- This checkout contains local script, test, tool, docs, sandbox, validation-artifact, and GitHub Actions workflow surfaces.
 - Historical notes in `CHANGELOG.md` may mention `.agents/`, `.codex/agents/`, or `.github/workflows/` from fuller upstream layouts; do not assume those paths exist in this workspace.
 - `AGENTS.md`, `SKILL.md`, `README.md`, and `docs/*` are the local workflow entrypoints and should stay aligned when commands or durable guidance change.
 - Generated validation output belongs under `artifacts/validation/`, not tracked root-level result files.
@@ -16,6 +16,7 @@
 - `Invoke-WhatIfValidation.ps1`: fixed-list `-WhatIf` validator for the current branch.
 - `SKILL.md`: repo-root entrypoint for the current local workflow surfaces.
 - `README.md`: short repo overview that points readers to the local playbook and docs.
+- `.github/workflows/powershell-ci.yml`: GitHub Actions workflow that runs lint, test, WhatIf, and perf jobs on Windows.
 - `CHANGELOG.md`: landed-history reference for durable repo changes.
 - `tests/*`: Pester suites for scripts and tooling.
 - `tests/TestHelpers.ps1`: shared helpers for object-based `-WhatIf` and module-import testing.
@@ -142,6 +143,15 @@ Get-Content '.\artifacts\validation\psscriptanalyzer.json' -Raw | ConvertFrom-Js
 Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 ```
 
+- GitHub Actions CI jobs:
+
+```text
+lint   -> PSScriptAnalyzer with TXT/JSON/SARIF artifact upload
+test   -> full Pester with NUnit XML artifact upload
+whatif -> branch WhatIf validator plus trusted smoke checks
+perf   -> performance regression check against committed printer baseline
+```
+
 ## Workflow Rounds
 
 1. Explore
@@ -183,6 +193,7 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 
 - This repo is PowerShell-only; keep AutoHotkey automation in a separate repository instead of reintroducing an AutoHotkey subtree under this tree.
 - Historical docs or notes may mention `.agents/`, `.codex/agents/`, or `.github/workflows/`; verify the current checkout before relying on those paths.
+- The current checkout now includes `.github/workflows/powershell-ci.yml`; keep it aligned with the local commands documented here.
 - Imported files may carry `Zone.Identifier`; validation commands should keep `-ExecutionPolicy Bypass` even after local MOTW cleanup.
 - In service-control scripts, restart should depend on whether this invocation actually stopped the service, not only on the initial service state.
 - Generated validation logs belong in `artifacts/validation/`; do not reintroduce tracked root-level result files.
@@ -211,4 +222,5 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - 2026-03-26: Flattened the runtime-specific work for Windows PowerShell 5.1 and preserved the stable in-Sandbox working folder at `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
 - 2026-03-28: Switched the Windows Sandbox profile to a helper script startup path so PowerShell opens consistently in `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
 - 2026-03-28: Added a local performance-regression workflow with committed printer-suite timing baselines plus TXT and JSON report artifacts.
+- 2026-03-29: Added `.github/workflows/powershell-ci.yml` with `lint`, `test`, `whatif`, and `perf` jobs that mirror the documented local validation flow.
 - Keep this section focused on durable repo guidance, not task-by-task narrative.

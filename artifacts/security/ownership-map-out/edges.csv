@@ -1,0 +1,50 @@
+person_id,file_id,touches,recency_weight,first_seen,last_seen,sensitive_weight
+it.gat.templeton@gmail.com,artifacts/validation/psscriptanalyzer.txt,3,2.992234,2026-03-26T18:20:50-04:00,2026-03-27T18:34:33-04:00,0.00
+it.gat.templeton@gmail.com,AGENTS.md,2,1.992180,2026-03-26T18:20:50-04:00,2026-03-26T18:45:19-04:00,0.00
+it.gat.templeton@gmail.com,README.md,2,1.992180,2026-03-26T18:20:50-04:00,2026-03-26T18:45:19-04:00,0.00
+it.gat.templeton@gmail.com,SKILL.md,2,1.992180,2026-03-26T18:20:50-04:00,2026-03-26T18:45:19-04:00,0.00
+it.gat.templeton@gmail.com,docs/sysadmin-main-multi-agent-sop.md,2,1.992180,2026-03-26T18:20:50-04:00,2026-03-26T18:45:19-04:00,0.00
+it.gat.templeton@gmail.com,CHANGELOG.md,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,Invoke-WhatIfValidation.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.40
+it.gat.templeton@gmail.com,PowerShell Script/Adobe/Install.AdobeAcrobat.Clean.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1.00
+it.gat.templeton@gmail.com,PowerShell Script/Network/Network.txt,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,PowerShell Script/PSScriptAnalyzer/PSScriptAnalyzerCMD.txt,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,PowerShell Script/Printer/Delete.all.offline.printer.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,PowerShell Script/Printer/Deleter.NamePrinter.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,PowerShell Script/Printer/Export.printer.list.BASIC.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,PowerShell Script/Printer/Export.printer.list.FULL.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,PowerShell Script/Printer/Printer.txt,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,PowerShell Script/Printer/Restart.Spool.DeletePrinterQSimple.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1.00
+it.gat.templeton@gmail.com,PowerShell Script/Printer/Restart.spool.delete.printerQ.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1.00
+it.gat.templeton@gmail.com,PowerShell Script/Printer/Restart.spool.delete.printerQ.ps1.old,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,PowerShell Script/Printer/restart.SpoolDeleteQV4.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1.00
+it.gat.templeton@gmail.com,PowerShell Script/Script.txt,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,PowerShell Script/WindowsServer/FichierOphelin.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1.00
+it.gat.templeton@gmail.com,PowerShell Script/WindowsServer/WindowServer.txt,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,PowerShell Script/windows-maintenance/Move-OrphanedInstallerFiles.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1.00
+it.gat.templeton@gmail.com,PowerShell Script/windows-maintenance/Nettoyage.Avance.Windows.Sauf.logserreur.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.80
+it.gat.templeton@gmail.com,PowerShell Script/windows-maintenance/Nettoyage.Complet.Caches.Windows.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.80
+it.gat.templeton@gmail.com,PowerShell Script/windows-maintenance/PC.txt,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,PowerShell Script/windows-maintenance/Reset.Network.RebootPC.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1.00
+it.gat.templeton@gmail.com,artifacts/validation/pester-results.xml,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,artifacts/validation/psscriptanalyzer.json,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,artifacts/validation/psscriptanalyzer.sarif,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,artifacts/validation/whatif-validation.txt,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,docs/windows-sandbox-validation.md,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,sandbox/sysadmin-main-validation.wsb,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,security_best_practices_report.md,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tests/Adobe/Install.AdobeAcrobat.Clean.Tests.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tests/Printer/Deleter.NamePrinter.Tests.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tests/Printer/Export.printer.list.Security.Tests.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tests/Printer/Restart.Spool.DeletePrinterQSimple.Tests.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tests/Printer/restart.SpoolDeleteQV4.Tests.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tests/TestHelpers.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tests/WindowsServer/FichierOphelin.Tests.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tests/sysadmin-main - Shortcut.lnk,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tests/tools/Invoke-PSScriptAnalyzer.Tests.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tests/windows-maintenance/Move-OrphanedInstallerFiles.Tests.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tests/windows-maintenance/Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tests/windows-maintenance/Nettoyage.Complet.Caches.Windows.Tests.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tests/windows-maintenance/Reset.Network.RebootPC.Tests.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tools/Invoke-PSScriptAnalyzer.ps1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00
+it.gat.templeton@gmail.com,tools/PSScriptAnalyzerSettings.psd1,1,0.996057,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,0.00

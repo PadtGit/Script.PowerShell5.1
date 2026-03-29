@@ -9,6 +9,6 @@
     </MappedFolder>
   </MappedFolders>
   <LogonCommand>
-    <Command>powershell.exe -NoExit -Command "Set-Location 'C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main'"</Command>
+    <Command>powershell.exe -NoExit -ExecutionPolicy Bypass -File "C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main\sandbox\Start-SysadminMainSandboxShell.ps1"</Command>
   </LogonCommand>
 </Configuration>

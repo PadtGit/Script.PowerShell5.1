@@ -24,6 +24,7 @@
 - `tools/PSScriptAnalyzerSettings.psd1`: canonical analyzer settings for repo-wide validation.
 - `artifacts/validation/*`: generated analyzer, Pester, and `-WhatIf` validation artifacts.
 - `sandbox/sysadmin-main-validation.wsb`: disposable Windows Sandbox profile that maps `C:\Users\Bob\Documents\sysadmin-Powershell.5` read-only into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`, disables networking and vGPU, and opens PowerShell at that path.
+- `sandbox/Start-SysadminMainSandboxShell.ps1`: Sandbox startup helper that resolves the repo root from its own location and sets that as the working directory. In Sandbox this resolves to `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
 - `docs/windows-sandbox-validation.md`: manual validation flow for risky scripts in Windows Sandbox.
 - `docs/sysadmin-main-multi-agent-sop.md`: longer workflow notes and role/responsibility guidance for this checkout.
 
@@ -176,6 +177,7 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - CI-style Pester exports results to `artifacts/validation/pester-results.xml`.
 - Pester 5 does not support combining `-CI` with `-Configuration`; use `New-PesterConfiguration` for CI-style NUnit XML output.
 - `sandbox\sysadmin-main-validation.wsb` maps `C:\Users\Bob\Documents\sysadmin-Powershell.5` into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main` as read-only with networking and vGPU disabled.
+- `sandbox\Start-SysadminMainSandboxShell.ps1` is the canonical way the Sandbox profile sets the in-Sandbox working directory, resolving the repo root from the helper location instead of depending on a brittle hard-coded path.
 - Keep the in-Sandbox working folder at `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main` so documented validation commands stay stable.
 - The preferred validation finish in this checkout is local analyzer, Pester, smoke checks, artifact review, and optional Sandbox checks for risky scripts.
 
@@ -186,4 +188,5 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - 2026-03-23: Standardized analyzer validation on the repo-wide recursive command, pinned PSScriptAnalyzer to `1.25.0`, and aligned output handling around TXT, JSON, and SARIF artifacts.
 - 2026-03-25: Added focused analyzer-helper regression coverage and documented invocation-failure diagnostics plus stale-JSON reset behavior.
 - 2026-03-26: Flattened the runtime-specific work for Windows PowerShell 5.1 and preserved the stable in-Sandbox working folder at `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
+- 2026-03-28: Switched the Windows Sandbox profile to a helper script startup path so PowerShell opens consistently in `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
 - Keep this section focused on durable repo guidance, not task-by-task narrative.

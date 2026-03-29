@@ -23,7 +23,7 @@ Describe 'V5 logged spool cleanup behavior' {
         $moduleName = $script:ModuleInfo.ModuleName
 
         InModuleScope $moduleName {
-            param($serviceName, $spoolDirectory, $logDirectory, $storageRoot, $logPath)
+            param($serviceName, $spoolDirectory, $spoolRoot, $logDirectory, $storageRoot, $logPath)
 
             $script:StorageRoot = $storageRoot
 
@@ -31,11 +31,18 @@ Describe 'V5 logged spool cleanup behavior' {
                 Status = [System.ServiceProcess.ServiceControllerStatus]::Running
             }
             $spoolFile = [System.IO.FileInfo]::new((Join-Path $spoolDirectory 'job1.spl'))
+            $reparseFile = [System.IO.FileInfo]::new((Join-Path $spoolDirectory 'job2.shd'))
 
+            Mock Resolve-TrustedDirectoryPath { $Path }
             Mock Resolve-SecureDirectory { $Path }
             Mock Get-UniqueChildPath { $logPath }
             Mock Get-Service { $service }
-            Mock Get-ChildItem { @($spoolFile) } -ParameterFilter { $LiteralPath -eq $spoolDirectory -and $File }
+            Mock Get-ChildItem { @($spoolFile, $reparseFile) } -ParameterFilter { $LiteralPath -eq $spoolDirectory -and $File }
+            Mock Test-IsReparsePoint {
+                param($Item)
+
+                $Item.FullName -eq $reparseFile.FullName
+            }
             Mock Start-Transcript {}
             Mock Stop-Transcript {}
             Mock Stop-Service {}
@@ -47,6 +54,7 @@ Describe 'V5 logged spool cleanup behavior' {
                 IsAdministrator = $false
                 ServiceName    = $serviceName
                 SpoolDirectory = $spoolDirectory
+                SpoolAllowedRoots = @($spoolRoot)
                 TimeoutSeconds = 30
                 LogDirectory   = $logDirectory
                 LogFilePrefix  = 'print-queue'
@@ -67,6 +75,7 @@ Describe 'V5 logged spool cleanup behavior' {
             if ($result.PSObject.Properties.Name -contains 'DeletedCount') {
                 $result.DeletedCount | Should -Be 0
             }
+            $result.FileCount | Should -Be 1
             if ($result.PSObject.Properties.Name -contains 'DeletedFiles') {
                 $result.DeletedFiles | Should -Be 0
             }
@@ -83,6 +92,9 @@ Describe 'V5 logged spool cleanup behavior' {
                 $result.ServiceName | Should -Be $serviceName
             }
 
+            Assert-MockCalled Resolve-TrustedDirectoryPath -Times 1 -Exactly -Scope It -ParameterFilter {
+                $Path -eq $spoolDirectory -and $AllowedRoots[0] -eq $spoolRoot
+            }
             Assert-MockCalled Resolve-SecureDirectory -Times 1 -Exactly -Scope It -ParameterFilter {
                 $Path -eq $logDirectory -and $AllowedRoots[0] -eq $storageRoot
             }
@@ -96,6 +108,7 @@ Describe 'V5 logged spool cleanup behavior' {
         } -Parameters @{
             serviceName    = 'Spooler'
             spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
+            spoolRoot      = 'C:\Windows\System32\spool'
             logDirectory   = 'C:\ProgramData\sysadmin-main\Logs\Printer'
             storageRoot    = 'C:\ProgramData\sysadmin-main'
             logPath        = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
@@ -106,7 +119,7 @@ Describe 'V5 logged spool cleanup behavior' {
         $moduleName = $script:ModuleInfo.ModuleName
 
         InModuleScope $moduleName {
-            param($serviceName, $spoolDirectory, $logDirectory, $storageRoot, $logPath)
+            param($serviceName, $spoolDirectory, $spoolRoot, $logDirectory, $storageRoot, $logPath)
 
             $script:StorageRoot = $storageRoot
 
@@ -114,6 +127,7 @@ Describe 'V5 logged spool cleanup behavior' {
                 Status = [System.ServiceProcess.ServiceControllerStatus]::Stopped
             }
 
+            Mock Resolve-TrustedDirectoryPath { $Path }
             Mock Resolve-SecureDirectory { $Path }
             Mock Get-UniqueChildPath { $logPath }
             Mock Get-Service { $service }
@@ -131,6 +145,7 @@ Describe 'V5 logged spool cleanup behavior' {
                 IsAdministrator = $false
                 ServiceName    = $serviceName
                 SpoolDirectory = $spoolDirectory
+                SpoolAllowedRoots = @($spoolRoot)
                 TimeoutSeconds = 30
                 LogDirectory   = $logDirectory
                 LogFilePrefix  = 'print-queue'
@@ -165,6 +180,7 @@ Describe 'V5 logged spool cleanup behavior' {
         } -Parameters @{
             serviceName    = 'Spooler'
             spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
+            spoolRoot      = 'C:\Windows\System32\spool'
             logDirectory   = 'C:\ProgramData\sysadmin-main\Logs\Printer'
             storageRoot    = 'C:\ProgramData\sysadmin-main'
             logPath        = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
@@ -175,7 +191,7 @@ Describe 'V5 logged spool cleanup behavior' {
         $moduleName = $script:ModuleInfo.ModuleName
 
         InModuleScope $moduleName {
-            param($serviceName, $spoolDirectory, $logDirectory, $storageRoot, $logPath, $scriptPath)
+            param($serviceName, $spoolDirectory, $spoolRoot, $logDirectory, $storageRoot, $logPath, $scriptPath)
 
             $script:StorageRoot = $storageRoot
 
@@ -189,6 +205,7 @@ Describe 'V5 logged spool cleanup behavior' {
 
             $scriptContent = Get-Content -LiteralPath $scriptPath -Raw
 
+            Mock Resolve-TrustedDirectoryPath { $Path }
             Mock Resolve-SecureDirectory { $Path }
             Mock Get-UniqueChildPath { $logPath }
             Mock Get-Service { $service }
@@ -204,6 +221,7 @@ Describe 'V5 logged spool cleanup behavior' {
                 IsAdministrator = $false
                 ServiceName    = $serviceName
                 SpoolDirectory = $spoolDirectory
+                SpoolAllowedRoots = @($spoolRoot)
                 TimeoutSeconds = 30
                 LogDirectory   = $logDirectory
                 LogFilePrefix  = 'print-queue'
@@ -232,10 +250,70 @@ Describe 'V5 logged spool cleanup behavior' {
         } -Parameters @{
             serviceName    = 'Spooler'
             spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
+            spoolRoot      = 'C:\Windows\System32\spool'
             logDirectory   = 'C:\ProgramData\sysadmin-main\Logs\Printer'
             storageRoot    = 'C:\ProgramData\sysadmin-main'
             logPath        = 'C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20250102.log'
         scriptPath     = (Join-Path (Get-SysadminMainRepoRoot) 'PowerShell Script\Printer\restart.SpoolDeleteQV4.ps1')
+        }
+    }
+
+    It 'rejects a reparse-point spool directory before transcript or service mutations' {
+        $moduleName = $script:ModuleInfo.ModuleName
+
+        InModuleScope $moduleName {
+            param($spoolDirectory, $spoolRoot, $logDirectory, $storageRoot)
+
+            $script:StorageRoot = $storageRoot
+
+            $spoolDirectoryItem = [System.IO.DirectoryInfo]::new($spoolDirectory)
+            $spoolRootItem = [System.IO.DirectoryInfo]::new($spoolRoot)
+
+            Mock Test-Path {
+                $LiteralPath -in @($spoolDirectory, $spoolRoot)
+            }
+            Mock Get-Item {
+                if ($LiteralPath -eq $spoolRoot) {
+                    return $spoolRootItem
+                }
+
+                return $spoolDirectoryItem
+            }
+            Mock Test-IsReparsePoint {
+                param($Item)
+
+                $Item.FullName -eq $spoolDirectory
+            }
+            Mock Resolve-SecureDirectory { $Path }
+            Mock Get-Service {}
+            Mock Start-Transcript {}
+            Mock Stop-Service {}
+            Mock Start-Service {}
+
+            {
+                Invoke-LoggedPrintQueueCleanup `
+                    -RequireAdmin $false `
+                    -IsAdministrator $false `
+                    -ServiceName 'Spooler' `
+                    -SpoolDirectory $spoolDirectory `
+                    -SpoolAllowedRoots @($spoolRoot) `
+                    -TimeoutSeconds 30 `
+                    -LogDirectory $logDirectory `
+                    -LogFilePrefix 'print-queue' `
+                    -AllowedExtensions @('.spl', '.shd') `
+                    -TemporaryFilePattern 'FP*.tmp'
+            } | Should -Throw '*reparse point*'
+
+            Assert-MockCalled Resolve-SecureDirectory -Times 0 -Exactly -Scope It
+            Assert-MockCalled Get-Service -Times 0 -Exactly -Scope It
+            Assert-MockCalled Start-Transcript -Times 0 -Exactly -Scope It
+            Assert-MockCalled Stop-Service -Times 0 -Exactly -Scope It
+            Assert-MockCalled Start-Service -Times 0 -Exactly -Scope It
+        } -Parameters @{
+            spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
+            spoolRoot      = 'C:\Windows\System32\spool'
+            logDirectory   = 'C:\ProgramData\sysadmin-main\Logs\Printer'
+            storageRoot    = 'C:\ProgramData\sysadmin-main'
         }
     }
 }

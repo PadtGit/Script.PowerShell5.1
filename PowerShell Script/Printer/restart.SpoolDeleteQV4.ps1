@@ -13,6 +13,7 @@ $IsAdministrator = ([Security.Principal.WindowsPrincipal] [Security.Principal.Wi
 $StorageRoot = Join-Path -Path $CommonApplicationDataPath -ChildPath 'sysadmin-main'
 $ServiceName = 'Spooler'
 $SpoolDirectory = Join-Path -Path $env:SystemRoot -ChildPath 'System32\spool\PRINTERS'
+$SpoolAllowedRoots = @(Join-Path -Path $env:SystemRoot -ChildPath 'System32\spool')
 $TimeoutSeconds = 30
 $LogDirectory = Join-Path -Path $CommonApplicationDataPath -ChildPath 'sysadmin-main\Logs\Printer'
 $LogFilePrefix = 'print-queue'
@@ -143,6 +144,43 @@ function Resolve-SecureDirectory {
     return $NormalizedPath
 }
 
+function Resolve-TrustedDirectoryPath {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path,
+
+        [Parameter(Mandatory = $true)]
+        [string[]]$AllowedRoots
+    )
+
+    $NormalizedPath = [System.IO.Path]::GetFullPath($Path)
+    if (-not (Test-PathWithinAllowedRoot -Path $NormalizedPath -AllowedRoots $AllowedRoots)) {
+        throw ('Directory path is outside the trusted root: {0}' -f $NormalizedPath)
+    }
+
+    foreach ($AllowedRoot in $AllowedRoots) {
+        if ([string]::IsNullOrWhiteSpace($AllowedRoot) -or -not (Test-Path -LiteralPath $AllowedRoot -PathType Container)) {
+            continue
+        }
+
+        $AllowedRootItem = Get-Item -LiteralPath $AllowedRoot -Force -ErrorAction Stop
+        if (Test-IsReparsePoint -Item $AllowedRootItem) {
+            throw ('Trusted root must not be a reparse point: {0}' -f $AllowedRootItem.FullName)
+        }
+    }
+
+    if (-not (Test-Path -LiteralPath $NormalizedPath -PathType Container)) {
+        throw ('Directory path not found: {0}' -f $NormalizedPath)
+    }
+
+    $DirectoryItem = Get-Item -LiteralPath $NormalizedPath -Force -ErrorAction Stop
+    if (Test-IsReparsePoint -Item $DirectoryItem) {
+        throw ('Directory path must not be a reparse point: {0}' -f $DirectoryItem.FullName)
+    }
+
+    return $DirectoryItem.FullName
+}
+
 function Get-UniqueChildPath {
     param(
         [Parameter(Mandatory = $true)]
@@ -177,6 +215,9 @@ function Invoke-LoggedPrintQueueCleanup {
         [string]$SpoolDirectory,
 
         [Parameter(Mandatory = $true)]
+        [string[]]$SpoolAllowedRoots,
+
+        [Parameter(Mandatory = $true)]
         [int]$TimeoutSeconds,
 
         [Parameter(Mandatory = $true)]
@@ -196,6 +237,7 @@ function Invoke-LoggedPrintQueueCleanup {
         throw 'Run this script in an elevated PowerShell 5.1 session.'
     }
 
+    $TrustedSpoolDirectory = Resolve-TrustedDirectoryPath -Path $SpoolDirectory -AllowedRoots $SpoolAllowedRoots
     $SecureLogDirectory = Resolve-SecureDirectory -Path $LogDirectory -AllowedRoots @($StorageRoot)
     $LogPath = Get-UniqueChildPath -Directory $SecureLogDirectory -FileNamePrefix $LogFilePrefix -Extension '.log'
     $TranscriptStarted = $false
@@ -221,10 +263,12 @@ function Invoke-LoggedPrintQueueCleanup {
 
         try {
             $Files = @(
-                Get-ChildItem -LiteralPath $SpoolDirectory -File -ErrorAction SilentlyContinue |
+                Get-ChildItem -LiteralPath $TrustedSpoolDirectory -File -ErrorAction SilentlyContinue |
                     Where-Object {
-                        $_.Extension -in '.spl', '.shd' -or
-                        $_.Name -like $TemporaryFilePattern
+                        -not (Test-IsReparsePoint -Item $_) -and (
+                            ($AllowedExtensions -contains $_.Extension.ToLowerInvariant()) -or
+                            $_.Name -like $TemporaryFilePattern
+                        )
                     }
             )
 
@@ -256,7 +300,7 @@ function Invoke-LoggedPrintQueueCleanup {
     [pscustomobject]@{
         ServiceName  = $ServiceName
         Service      = $ServiceName
-        QueuePath    = $SpoolDirectory
+        QueuePath    = $TrustedSpoolDirectory
         LogPath      = $LogPath
         FileCount    = $Files.Count
         DeletedCount = $DeletedCount
@@ -274,6 +318,7 @@ try {
         -IsAdministrator $IsAdministrator `
         -ServiceName $ServiceName `
         -SpoolDirectory $SpoolDirectory `
+        -SpoolAllowedRoots $SpoolAllowedRoots `
         -TimeoutSeconds $TimeoutSeconds `
         -LogDirectory $LogDirectory `
         -LogFilePrefix $LogFilePrefix `

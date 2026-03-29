@@ -1,0 +1,50 @@
+file_id,path,first_seen,last_seen,commit_count,touches,bus_factor,sensitivity_score,sensitivity_tags
+AGENTS.md,AGENTS.md,2026-03-26T18:20:50-04:00,2026-03-26T18:45:19-04:00,2,2,1,0.00,
+CHANGELOG.md,CHANGELOG.md,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+Invoke-WhatIfValidation.ps1,Invoke-WhatIfValidation.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.40,validation_entrypoint
+PowerShell Script/Adobe/Install.AdobeAcrobat.Clean.ps1,PowerShell Script/Adobe/Install.AdobeAcrobat.Clean.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,1.00,package_install
+PowerShell Script/Network/Network.txt,PowerShell Script/Network/Network.txt,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+PowerShell Script/PSScriptAnalyzer/PSScriptAnalyzerCMD.txt,PowerShell Script/PSScriptAnalyzer/PSScriptAnalyzerCMD.txt,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+PowerShell Script/Printer/Delete.all.offline.printer.ps1,PowerShell Script/Printer/Delete.all.offline.printer.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+PowerShell Script/Printer/Deleter.NamePrinter.ps1,PowerShell Script/Printer/Deleter.NamePrinter.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+PowerShell Script/Printer/Export.printer.list.BASIC.ps1,PowerShell Script/Printer/Export.printer.list.BASIC.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+PowerShell Script/Printer/Export.printer.list.FULL.ps1,PowerShell Script/Printer/Export.printer.list.FULL.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+PowerShell Script/Printer/Printer.txt,PowerShell Script/Printer/Printer.txt,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+PowerShell Script/Printer/Restart.Spool.DeletePrinterQSimple.ps1,PowerShell Script/Printer/Restart.Spool.DeletePrinterQSimple.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,1.00,service_control
+PowerShell Script/Printer/Restart.spool.delete.printerQ.ps1,PowerShell Script/Printer/Restart.spool.delete.printerQ.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,1.00,service_control
+PowerShell Script/Printer/Restart.spool.delete.printerQ.ps1.old,PowerShell Script/Printer/Restart.spool.delete.printerQ.ps1.old,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+PowerShell Script/Printer/restart.SpoolDeleteQV4.ps1,PowerShell Script/Printer/restart.SpoolDeleteQV4.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,1.00,service_control
+PowerShell Script/Script.txt,PowerShell Script/Script.txt,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+PowerShell Script/WindowsServer/FichierOphelin.ps1,PowerShell Script/WindowsServer/FichierOphelin.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,1.00,installer_store
+PowerShell Script/WindowsServer/WindowServer.txt,PowerShell Script/WindowsServer/WindowServer.txt,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+PowerShell Script/windows-maintenance/Move-OrphanedInstallerFiles.ps1,PowerShell Script/windows-maintenance/Move-OrphanedInstallerFiles.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,1.00,installer_store
+PowerShell Script/windows-maintenance/Nettoyage.Avance.Windows.Sauf.logserreur.ps1,PowerShell Script/windows-maintenance/Nettoyage.Avance.Windows.Sauf.logserreur.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.80,destructive_cleanup
+PowerShell Script/windows-maintenance/Nettoyage.Complet.Caches.Windows.ps1,PowerShell Script/windows-maintenance/Nettoyage.Complet.Caches.Windows.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.80,destructive_cleanup
+PowerShell Script/windows-maintenance/PC.txt,PowerShell Script/windows-maintenance/PC.txt,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+PowerShell Script/windows-maintenance/Reset.Network.RebootPC.ps1,PowerShell Script/windows-maintenance/Reset.Network.RebootPC.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,1.00,network_stack
+README.md,README.md,2026-03-26T18:20:50-04:00,2026-03-26T18:45:19-04:00,2,2,1,0.00,
+SKILL.md,SKILL.md,2026-03-26T18:20:50-04:00,2026-03-26T18:45:19-04:00,2,2,1,0.00,
+artifacts/validation/pester-results.xml,artifacts/validation/pester-results.xml,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+artifacts/validation/psscriptanalyzer.json,artifacts/validation/psscriptanalyzer.json,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+artifacts/validation/psscriptanalyzer.sarif,artifacts/validation/psscriptanalyzer.sarif,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+artifacts/validation/psscriptanalyzer.txt,artifacts/validation/psscriptanalyzer.txt,2026-03-26T18:20:50-04:00,2026-03-27T18:34:33-04:00,3,3,1,0.00,
+artifacts/validation/whatif-validation.txt,artifacts/validation/whatif-validation.txt,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+docs/sysadmin-main-multi-agent-sop.md,docs/sysadmin-main-multi-agent-sop.md,2026-03-26T18:20:50-04:00,2026-03-26T18:45:19-04:00,2,2,1,0.00,
+docs/windows-sandbox-validation.md,docs/windows-sandbox-validation.md,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+sandbox/sysadmin-main-validation.wsb,sandbox/sysadmin-main-validation.wsb,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+security_best_practices_report.md,security_best_practices_report.md,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tests/Adobe/Install.AdobeAcrobat.Clean.Tests.ps1,tests/Adobe/Install.AdobeAcrobat.Clean.Tests.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tests/Printer/Deleter.NamePrinter.Tests.ps1,tests/Printer/Deleter.NamePrinter.Tests.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tests/Printer/Export.printer.list.Security.Tests.ps1,tests/Printer/Export.printer.list.Security.Tests.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tests/Printer/Restart.Spool.DeletePrinterQSimple.Tests.ps1,tests/Printer/Restart.Spool.DeletePrinterQSimple.Tests.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tests/Printer/restart.SpoolDeleteQV4.Tests.ps1,tests/Printer/restart.SpoolDeleteQV4.Tests.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tests/TestHelpers.ps1,tests/TestHelpers.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tests/WindowsServer/FichierOphelin.Tests.ps1,tests/WindowsServer/FichierOphelin.Tests.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tests/sysadmin-main - Shortcut.lnk,tests/sysadmin-main - Shortcut.lnk,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tests/tools/Invoke-PSScriptAnalyzer.Tests.ps1,tests/tools/Invoke-PSScriptAnalyzer.Tests.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tests/windows-maintenance/Move-OrphanedInstallerFiles.Tests.ps1,tests/windows-maintenance/Move-OrphanedInstallerFiles.Tests.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tests/windows-maintenance/Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1,tests/windows-maintenance/Nettoyage.Avance.Windows.Sauf.logserreur.Tests.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tests/windows-maintenance/Nettoyage.Complet.Caches.Windows.Tests.ps1,tests/windows-maintenance/Nettoyage.Complet.Caches.Windows.Tests.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tests/windows-maintenance/Reset.Network.RebootPC.Tests.ps1,tests/windows-maintenance/Reset.Network.RebootPC.Tests.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tools/Invoke-PSScriptAnalyzer.ps1,tools/Invoke-PSScriptAnalyzer.ps1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,
+tools/PSScriptAnalyzerSettings.psd1,tools/PSScriptAnalyzerSettings.psd1,2026-03-26T18:20:50-04:00,2026-03-26T18:20:50-04:00,1,1,1,0.00,

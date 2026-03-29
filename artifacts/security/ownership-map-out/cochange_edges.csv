@@ -1,0 +1,7 @@
+file_a,file_b,cochange_count,jaccard
+AGENTS.md,README.md,2,1.000000
+AGENTS.md,SKILL.md,2,1.000000
+AGENTS.md,docs/sysadmin-main-multi-agent-sop.md,2,1.000000
+README.md,SKILL.md,2,1.000000
+README.md,docs/sysadmin-main-multi-agent-sop.md,2,1.000000
+SKILL.md,docs/sysadmin-main-multi-agent-sop.md,2,1.000000

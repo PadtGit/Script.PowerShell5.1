@@ -1,0 +1,86 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "community_maintainers": [
+      {
+        "id": 1,
+        "size": 4,
+        "maintainers": [
+          {
+            "person_id": "it.gat.templeton@gmail.com",
+            "name": "System Admin",
+            "touches": 8,
+            "touch_share": 1.0,
+            "recency_share": 1.0,
+            "sensitive_share": 0.0,
+            "primary_tz_offset": "-04:00"
+          }
+        ],
+        "bus_factor": 1,
+        "owner_count": 1,
+        "totals": {
+          "touches": 8,
+          "recency_weight": 7.968718,
+          "sensitive_weight": 0
+        }
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "community_id": 1,
+      "id": "AGENTS.md"
+    },
+    {
+      "community_id": 1,
+      "id": "README.md"
+    },
+    {
+      "community_id": 1,
+      "id": "SKILL.md"
+    },
+    {
+      "community_id": 1,
+      "id": "docs/sysadmin-main-multi-agent-sop.md"
+    }
+  ],
+  "edges": [
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "AGENTS.md",
+      "target": "README.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "AGENTS.md",
+      "target": "SKILL.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "AGENTS.md",
+      "target": "docs/sysadmin-main-multi-agent-sop.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "README.md",
+      "target": "SKILL.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "README.md",
+      "target": "docs/sysadmin-main-multi-agent-sop.md"
+    },
+    {
+      "weight": 1.0,
+      "count": 2,
+      "source": "SKILL.md",
+      "target": "docs/sysadmin-main-multi-agent-sop.md"
+    }
+  ]
+}

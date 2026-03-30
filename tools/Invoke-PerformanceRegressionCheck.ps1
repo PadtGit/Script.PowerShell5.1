@@ -108,7 +108,7 @@ function Get-MedianValue {
         return [double]0
     }
 
-    $MiddleIndex = [int]($Sorted.Count / 2)
+    $MiddleIndex = [int][math]::Floor($Sorted.Count / 2)
     if (($Sorted.Count % 2) -eq 1) {
         return [double]$Sorted[$MiddleIndex]
     }
@@ -222,6 +222,7 @@ function Write-PerformanceArtifacts {
 }
 
 function Update-BaselineFile {
+    [CmdletBinding(SupportsShouldProcess = $true)]
     param(
         [Parameter(Mandatory = $true)]
         [string]$BaselineFilePath,
@@ -258,8 +259,10 @@ function Update-BaselineFile {
         Suites      = @($BaselineSuites)
     }
 
-    ($BaselineObject | ConvertTo-Json -Depth 6) |
-        Set-Content -LiteralPath $BaselineFilePath -Encoding UTF8
+    if ($PSCmdlet.ShouldProcess($BaselineFilePath, 'Write performance baseline file')) {
+        ($BaselineObject | ConvertTo-Json -Depth 6) |
+            Set-Content -LiteralPath $BaselineFilePath -Encoding UTF8
+    }
 }
 
 $RepoRoot = Get-RepoRoot

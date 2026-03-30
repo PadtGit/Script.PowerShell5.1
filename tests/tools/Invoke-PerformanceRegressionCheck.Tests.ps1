@@ -145,4 +145,78 @@ Describe "No baseline suite" {
             Remove-Item -LiteralPath $tempRoot -Recurse -Force -ErrorAction SilentlyContinue
         }
     }
+
+    It 'uses the middle sorted duration for odd sample counts instead of the first run' {
+        $tempRoot = Join-Path ([System.IO.Path]::GetTempPath()) ([guid]::NewGuid().ToString('N'))
+        $null = New-Item -ItemType Directory -Path $tempRoot -Force
+
+        try {
+            $testPath = Join-Path $tempRoot 'MedianOdd.Tests.ps1'
+            $statePath = Join-Path $tempRoot 'run-count.txt'
+            $baselinePath = Join-Path $tempRoot 'baseline.json'
+            $jsonPath = Join-Path $tempRoot 'report.json'
+            $txtPath = Join-Path $tempRoot 'report.txt'
+
+            Set-Content -LiteralPath $testPath -Encoding UTF8 -Value @"
+Describe "Median odd suite" {
+    It "slows only the first run" {
+        `$statePath = '$($statePath.Replace('\', '\\'))'
+        `$runCount = 0
+        if (Test-Path -LiteralPath `$statePath) {
+            `$runCount = [int](Get-Content -LiteralPath `$statePath -Raw)
+        }
+
+        `$runCount++
+        Set-Content -LiteralPath `$statePath -Value `$runCount -Encoding UTF8
+
+        if (`$runCount -eq 1) {
+            Start-Sleep -Milliseconds 700
+        }
+        else {
+            Start-Sleep -Milliseconds 50
+        }
+
+        `$true | Should -BeTrue
+    }
+}
+"@
+
+            Set-Content -LiteralPath $baselinePath -Encoding UTF8 -Value @'
+{
+  "Version": 1,
+  "GeneratedAt": "2026-03-30T00:00:00",
+  "SampleCount": 3,
+  "Suites": [
+    {
+      "TestPath": "__TEST_PATH__",
+      "BaselineMedianSeconds": 0.3,
+      "TotalCount": 1,
+      "AllowedRegressionPercent": 100
+    }
+  ]
+}
+'@.Replace('__TEST_PATH__', $testPath.Replace('\', '\\'))
+
+            & $script:PowerShellPath `
+                -NoProfile `
+                -ExecutionPolicy Bypass `
+                -File $script:ToolPath `
+                -TestPath $testPath `
+                -SampleCount 3 `
+                -BaselinePath $baselinePath `
+                -OutJsonPath $jsonPath `
+                -OutTxtPath $txtPath `
+                -EnableExit | Out-Null
+
+            $LASTEXITCODE | Should -Be 0
+
+            $report = Get-Content -LiteralPath $jsonPath -Raw | ConvertFrom-Json
+            $report.RegressionSuiteCount | Should -Be 0
+            $report.Suites[0].Status | Should -Be 'Passed'
+            [double]$report.Suites[0].CurrentMedianSeconds | Should -BeLessThan 0.61
+        }
+        finally {
+            Remove-Item -LiteralPath $tempRoot -Recurse -Force -ErrorAction SilentlyContinue
+        }
+    }
 }

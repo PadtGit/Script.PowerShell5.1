@@ -46,6 +46,10 @@ jobs:
         run: |
           Install-Module -Name Pester -Repository PSGallery -Scope CurrentUser -Force -SkipPublisherCheck
 
+      - name: Install PSScriptAnalyzer 1.25.0
+        run: |
+          Install-Module -Name PSScriptAnalyzer -Repository PSGallery -Scope CurrentUser -RequiredVersion 1.25.0 -Force -SkipPublisherCheck
+
       - name: Run Pester suite
         run: |
           Import-Module Pester -MinimumVersion 5.0.0 -Force

@@ -12,7 +12,7 @@ Use Windows Sandbox for manual validation of risky scripts such as:
 
 - Sandbox file: `sandbox/sysadmin-main-validation.wsb`
 - Sandbox shell helper: `sandbox/Start-SysadminMainSandboxShell.ps1`
-- Host repo path: `C:\Users\Bob\Documents\sysadmin-Powershell.5`
+- Host repo path: `C:\Users\Bob\Documents\Script.PowerShell5.1`
 - Sandbox repo path: `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`
 - The host repo is mapped read-only into the Sandbox.
 - This branch keeps the in-Sandbox working folder at `sysadmin-main` so the documented validation commands stay stable after the Windows PowerShell 5.1 branch split.

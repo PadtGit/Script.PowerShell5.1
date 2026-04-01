@@ -23,7 +23,7 @@
 - `tools/Invoke-PSScriptAnalyzer.ps1`: analyzer runner that emits TXT, JSON, and SARIF artifacts.
 - `tools/PSScriptAnalyzerSettings.psd1`: canonical analyzer settings for repo-wide validation.
 - `artifacts/validation/*`: generated analyzer, Pester, and `-WhatIf` validation artifacts.
-- `sandbox/sysadmin-main-validation.wsb`: disposable Windows Sandbox profile that maps `C:\Users\Bob\Documents\sysadmin-Powershell.5` read-only into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`, disables networking and vGPU, and opens PowerShell at that path.
+- `sandbox/sysadmin-main-validation.wsb`: disposable Windows Sandbox profile that maps `C:\Users\Bob\Documents\Script.PowerShell5.1` read-only into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`, disables networking and vGPU, and opens PowerShell at that path.
 - `sandbox/Start-SysadminMainSandboxShell.ps1`: Sandbox startup helper that resolves the repo root from its own location and sets that as the working directory. In Sandbox this resolves to `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
 - `docs/windows-sandbox-validation.md`: manual validation flow for risky scripts in Windows Sandbox.
 - `docs/sysadmin-main-multi-agent-sop.md`: longer workflow notes and role/responsibility guidance for this checkout.
@@ -176,7 +176,7 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - `tests\tools\Invoke-PSScriptAnalyzer.Tests.ps1` locks in analyzer crash-handling and stale-artifact reset behavior.
 - CI-style Pester exports results to `artifacts/validation/pester-results.xml`.
 - Pester 5 does not support combining `-CI` with `-Configuration`; use `New-PesterConfiguration` for CI-style NUnit XML output.
-- `sandbox\sysadmin-main-validation.wsb` maps `C:\Users\Bob\Documents\sysadmin-Powershell.5` into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main` as read-only with networking and vGPU disabled.
+- `sandbox\sysadmin-main-validation.wsb` maps `C:\Users\Bob\Documents\Script.PowerShell5.1` into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main` as read-only with networking and vGPU disabled.
 - `sandbox\Start-SysadminMainSandboxShell.ps1` is the canonical way the Sandbox profile sets the in-Sandbox working directory, resolving the repo root from the helper location instead of depending on a brittle hard-coded path.
 - Keep the in-Sandbox working folder at `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main` so documented validation commands stay stable.
 - The preferred validation finish in this checkout is local analyzer, Pester, smoke checks, artifact review, and optional Sandbox checks for risky scripts.

@@ -4,11 +4,12 @@
 
 - Use a manager-pattern workflow even in this trimmed checkout: one controller should keep the task narrative coherent while discovery, implementation, validation, review, and doc-sync responsibilities stay explicit.
 - This checkout does not currently ship repo-local `.codex/agents/*.toml`, `.agents/*`, or `.github/workflows/*` surfaces. Treat the role names below as workflow responsibilities, not as config-backed files that must exist.
-- Keep this SOP, `AGENTS.md`, `SKILL.md`, `README.md`, and the local validation commands aligned whenever the workflow changes.
+- Keep this SOP, `AGENTS.md`, `PLANS.md`, `SKILL.md`, `README.md`, and the local validation commands aligned whenever the workflow changes.
 
 ## Repo Ground Rules
 
 - Canonical scripts live under `PowerShell Script/`.
+- `PLANS.md` is the repo-specific guide for writing and maintaining ExecPlans, and active task plans should point back to it.
 - Runtime scripts under `PowerShell Script/` should stay copyable as single files for PC-side use; when an original script still has fixed launch-time defaults, keep a sibling `.Standalone.ps1` copy beside it.
 - `Invoke-WhatIfValidation.ps1` is the branch-level validator entrypoint.
 - Generated validation output belongs under `artifacts/validation/`.
@@ -28,7 +29,7 @@
 | `Behavioral tester` | `tests/*` only | Behavior-focused Pester coverage and `-WhatIf` safety tests |
 | `Validator` | `artifacts/validation/*` only during validation | Local analyzer, Pester, smoke checks, artifact review, and Sandbox validation |
 | `Reviewer` | None | Final correctness, regression, safety, and workflow-drift review |
-| `Playbook librarian` | `AGENTS.md`, `SKILL.md`, `README.md`, and `docs/*` | Workflow-doc synchronization and durable repo guidance upkeep |
+| `Playbook librarian` | `AGENTS.md`, `PLANS.md`, `SKILL.md`, `README.md`, and `docs/*` | Workflow-doc synchronization and durable repo guidance upkeep |
 
 ## Current High-Risk Areas
 
@@ -53,7 +54,7 @@
 6. Review artifacts
    - Inspect `artifacts/validation/` outputs and confirm analyzer failures or clean runs were recorded correctly.
 7. Playbook sync
-   - Update `AGENTS.md`, `SKILL.md`, `README.md`, and `docs/*` when durable repo knowledge or commands drift.
+   - Update `AGENTS.md`, `PLANS.md`, `SKILL.md`, `README.md`, and `docs/*` when durable repo knowledge or commands drift.
 8. Change analysis
    - Use Git metadata for recency windows rather than file timestamps.
 

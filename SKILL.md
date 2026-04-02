@@ -21,4 +21,4 @@ Use the canonical script tree under `PowerShell Script/`.
 
 ## Detailed Workflow
 
-Use `AGENTS.md` for the full playbook and `docs/sysadmin-main-multi-agent-sop.md` for the longer role and workflow notes that match this checkout.
+Use `AGENTS.md` for the full playbook, `PLANS.md` for repo-specific ExecPlan requirements, and `docs/sysadmin-main-multi-agent-sop.md` for the longer role and workflow notes that match this checkout.

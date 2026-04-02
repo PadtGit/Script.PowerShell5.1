@@ -7,15 +7,22 @@
 - Keep runtime scripts under `PowerShell Script/*` copyable as single files for PC-side use. When an original script still has baked-in launch-time defaults, add a sibling `.Standalone.ps1` copy rather than changing that original contract.
 - This checkout currently contains local script, test, tool, docs, sandbox, and validation-artifact surfaces only.
 - Historical notes in `CHANGELOG.md` may mention `.agents/`, `.codex/agents/`, or `.github/workflows/` from fuller upstream layouts; do not assume those paths exist in this workspace.
-- `AGENTS.md`, `SKILL.md`, `README.md`, and `docs/*` are the local workflow entrypoints and should stay aligned when commands or durable guidance change.
+- `AGENTS.md`, `PLANS.md`, `SKILL.md`, `README.md`, and `docs/*` are the local workflow entrypoints and should stay aligned when commands or durable guidance change.
 - Generated validation output belongs under `artifacts/validation/`, not tracked root-level result files.
 - Prefer small, reversible changes over bulk rewrites.
+
+## ExecPlans
+
+When writing complex features or significant refactors, use an ExecPlan from design to implementation.
+
+In this checkout, follow `PLANS.md` from the repository root for ExecPlan structure, maintenance rules, validation expectations, and the default `plan.md` task-plan location.
 
 ## Canonical Layout
 
 - `PowerShell Script/*`: runtime-specific script tree for this branch.
 - `PowerShell Script/*/*.Standalone.ps1`: repo-free launch copies for runtime scripts that otherwise carry baked-in launch-time defaults.
 - `Invoke-WhatIfValidation.ps1`: fixed-list `-WhatIf` validator for the current branch.
+- `PLANS.md`: repo-specific rules for writing and maintaining ExecPlans.
 - `SKILL.md`: repo-root entrypoint for the current local workflow surfaces.
 - `README.md`: short repo overview that points readers to the local playbook and docs.
 - `CHANGELOG.md`: landed-history reference for durable repo changes.
@@ -135,7 +142,7 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
    - Confirm referenced paths exist in this checkout before copying older commands or workflow notes.
 2. Implement
    - Make the smallest defensible patch.
-   - Keep `AGENTS.md`, `SKILL.md`, `README.md`, and `docs/*` aligned in the same change set when workflow wording changes.
+   - Keep `AGENTS.md`, `PLANS.md`, `SKILL.md`, `README.md`, and `docs/*` aligned in the same change set when workflow wording changes.
 3. Optional security review
    - Use a security-focused pass when work touches trust boundaries, path trust, reparse-point handling, publisher checks, output roots, or ACLs.
 4. Optional behavioral Pester coverage
@@ -147,7 +154,7 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
    - Inspect `artifacts/validation/` outputs after analyzer, Pester, or `-WhatIf` runs.
    - Clean analyzer reruns should reset JSON findings to `[]`, and analyzer invocation failures should appear as structured diagnostics instead of disappearing silently.
 7. Playbook sync
-   - Sync `AGENTS.md`, `SKILL.md`, `README.md`, and `docs/*` whenever durable repo knowledge or validation commands change.
+   - Sync `AGENTS.md`, `PLANS.md`, `SKILL.md`, `README.md`, and `docs/*` whenever durable repo knowledge or validation commands change.
 8. Change analysis
    - Use Git metadata for recent-commit or last-N-days analysis.
    - Do not substitute file timestamps for commit windows.
@@ -161,7 +168,7 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - `Behavioral tester`: owns behavior-focused Pester coverage and `-WhatIf` safety assertions.
 - `Validator`: runs analyzer, Pester, smoke checks, artifact review, and Sandbox validation without editing tracked files unless the task is explicitly documentation upkeep.
 - `Reviewer`: checks correctness, safety, regressions, validation gaps, and workflow drift before finalizing.
-- `Playbook librarian`: keeps `AGENTS.md`, `SKILL.md`, `README.md`, and `docs/*` aligned with the current checkout.
+- `Playbook librarian`: keeps `AGENTS.md`, `PLANS.md`, `SKILL.md`, `README.md`, and `docs/*` aligned with the current checkout.
 
 ## Known Pitfalls and Discoveries
 
@@ -192,4 +199,5 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - 2026-03-25: Added focused analyzer-helper regression coverage and documented invocation-failure diagnostics plus stale-JSON reset behavior.
 - 2026-03-26: Flattened the runtime-specific work for Windows PowerShell 5.1 and preserved the stable in-Sandbox working folder at `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
 - 2026-03-28: Switched the Windows Sandbox profile to a helper script startup path so PowerShell opens consistently in `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
+- 2026-04-02: Added `PLANS.md` as the repo-specific ExecPlan guide and aligned the workflow entrypoints to reference it.
 - Keep this section focused on durable repo guidance, not task-by-task narrative.

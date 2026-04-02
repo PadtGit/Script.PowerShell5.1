@@ -6,6 +6,7 @@ Use the canonical script tree under `PowerShell Script/`.
 
 - This branch supports Windows PowerShell 5.1 only.
 - `PowerShell Script/*` is the primary implementation surface.
+- Runtime scripts under `PowerShell Script/*` should stay single-file portable for PC-side use; when a script needs a repo-free launch path, add a sibling `.Standalone.ps1` copy instead of changing the original script contract.
 - Keep `Set-StrictMode -Version 3.0`, `$ErrorActionPreference = 'Stop'`, and `SupportsShouldProcess` behavior intact unless the task explicitly changes them.
 - Preserve usable `-WhatIf` behavior wherever the script already supports safe preview without elevation.
 - Write generated validation output to `artifacts/validation/`, not to tracked repo files.

@@ -22,8 +22,10 @@ if (-not [string]::IsNullOrWhiteSpace($ResultDirectory) -and -not (Test-Path -Li
 
 $ScriptPaths = @(
     'Adobe\Install.AdobeAcrobat.Clean.ps1',
+    'Adobe\Install.AdobeAcrobat.Clean.Standalone.ps1',
     'Printer\Delete.all.offline.printer.ps1',
     'Printer\Deleter.NamePrinter.ps1',
+    'Printer\Deleter.NamePrinter.Standalone.ps1',
     'Printer\Export.printer.list.BASIC.ps1',
     'Printer\Export.printer.list.FULL.ps1',
     'Printer\Restart.spool.delete.printerQ.ps1',

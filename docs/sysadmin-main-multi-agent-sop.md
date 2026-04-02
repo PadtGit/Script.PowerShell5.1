@@ -9,6 +9,7 @@
 ## Repo Ground Rules
 
 - Canonical scripts live under `PowerShell Script/`.
+- Runtime scripts under `PowerShell Script/` should stay copyable as single files for PC-side use; when an original script still has fixed launch-time defaults, keep a sibling `.Standalone.ps1` copy beside it.
 - `Invoke-WhatIfValidation.ps1` is the branch-level validator entrypoint.
 - Generated validation output belongs under `artifacts/validation/`.
 - This branch supports Windows PowerShell 5.1 only.

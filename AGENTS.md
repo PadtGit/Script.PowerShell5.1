@@ -4,6 +4,7 @@
 
 - This branch contains Windows sysadmin PowerShell scripts for Windows PowerShell 5.1 only.
 - Treat `PowerShell Script/*` as the canonical working tree.
+- Keep runtime scripts under `PowerShell Script/*` copyable as single files for PC-side use. When an original script still has baked-in launch-time defaults, add a sibling `.Standalone.ps1` copy rather than changing that original contract.
 - This checkout currently contains local script, test, tool, docs, sandbox, and validation-artifact surfaces only.
 - Historical notes in `CHANGELOG.md` may mention `.agents/`, `.codex/agents/`, or `.github/workflows/` from fuller upstream layouts; do not assume those paths exist in this workspace.
 - `AGENTS.md`, `SKILL.md`, `README.md`, and `docs/*` are the local workflow entrypoints and should stay aligned when commands or durable guidance change.
@@ -13,6 +14,7 @@
 ## Canonical Layout
 
 - `PowerShell Script/*`: runtime-specific script tree for this branch.
+- `PowerShell Script/*/*.Standalone.ps1`: repo-free launch copies for runtime scripts that otherwise carry baked-in launch-time defaults.
 - `Invoke-WhatIfValidation.ps1`: fixed-list `-WhatIf` validator for the current branch.
 - `SKILL.md`: repo-root entrypoint for the current local workflow surfaces.
 - `README.md`: short repo overview that points readers to the local playbook and docs.
@@ -166,6 +168,7 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - This repo is PowerShell-only; keep AutoHotkey automation in a separate repository instead of reintroducing an AutoHotkey subtree under this tree.
 - Historical docs or notes may mention `.agents/`, `.codex/agents/`, or `.github/workflows/`; verify the current checkout before relying on those paths.
 - Imported files may carry `Zone.Identifier`; validation commands should keep `-ExecutionPolicy Bypass` even after local MOTW cleanup.
+- Runtime scripts under `PowerShell Script/*` are the copy-to-PC surfaces. Repo-root validators, `tools/*`, `tests/*`, and `sandbox/*` still assume the local checkout layout.
 - In service-control scripts, restart should depend on whether this invocation actually stopped the service, not only on the initial service state.
 - Generated validation logs belong in `artifacts/validation/`; do not reintroduce tracked root-level result files.
 - The standard analyzer baseline is the repo-wide recursive command using `tools\Invoke-PSScriptAnalyzer.ps1` with `tools\PSScriptAnalyzerSettings.psd1`, `-EnableExit`, and `-ExitCodeMode AllDiagnostics`.

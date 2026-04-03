@@ -80,11 +80,11 @@ ScriptPath : C:\Users\Bob\Documents\Script.PowerShell5.1\PowerShell Script\Print
 ExitCode   : 0
 Success    : True
 Output     : What if: Performing the operation "Export printer list" on target 
-             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260401-224153182.csv".
+             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260402-132930231.csv".
              
              
              OutputPath    : 
-             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260401-224153182.csv
+             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-basic-20260402-132930231.csv
              PrinterCount  : 1
              ExportProfile : Basic
              Status        : WhatIf
@@ -97,11 +97,11 @@ ScriptPath : C:\Users\Bob\Documents\Script.PowerShell5.1\PowerShell Script\Print
 ExitCode   : 0
 Success    : True
 Output     : What if: Performing the operation "Export printer list" on target 
-             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260401-224154253.csv".
+             "C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260402-132931510.csv".
              
              
              OutputPath    : 
-             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260401-224154253.csv
+             C:\Users\Bob\AppData\Local\sysadmin-main\Exports\Printers\printers-full-20260402-132931510.csv
              PrinterCount  : 1
              ExportProfile : Full
              Status        : WhatIf
@@ -152,7 +152,7 @@ Output     : What if: Performing the operation "Stop Print Spooler" on target "S
              ServiceName  : Spooler
              Service      : Spooler
              QueuePath    : C:\WINDOWS\System32\spool\PRINTERS
-             LogPath      : C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20260401-224156290-077a088f.log
+             LogPath      : C:\ProgramData\sysadmin-main\Logs\Printer\print-queue-20260402-132933726-1866d705.log
              FileCount    : 0
              DeletedCount : 0
              DeletedFiles : 0

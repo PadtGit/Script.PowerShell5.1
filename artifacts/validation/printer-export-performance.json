@@ -1,43 +1,43 @@
 ﻿{
-    "GeneratedAt":  "2026-04-03 22:29:08",
+    "GeneratedAt":  "2026-04-03 22:42:05",
     "SuitePath":  "C:\\Users\\Bob\\.codex\\worktrees\\51b8\\Script.PowerShell5.1\\tests\\Printer\\Export.printer.list.Security.Tests.ps1",
     "BaselinePath":  "C:\\Users\\Bob\\.codex\\worktrees\\51b8\\Script.PowerShell5.1\\tools\\performance-baselines\\printer-export-security.json",
     "RunCount":  3,
     "RunDurationsSeconds":  [
-                                15.4478373,
-                                9.7044442999999987,
-                                9.7390287
+                                12.361711099999999,
+                                1.7236000999999999,
+                                0.9731728
                             ],
     "Measurements":  [
                          {
                              "RunNumber":  1,
-                             "DurationSeconds":  15.4478373,
+                             "DurationSeconds":  12.361711099999999,
                              "PassedCount":  5,
                              "FailedCount":  0,
                              "SkippedCount":  0
                          },
                          {
                              "RunNumber":  2,
-                             "DurationSeconds":  9.7044442999999987,
+                             "DurationSeconds":  1.7236000999999999,
                              "PassedCount":  5,
                              "FailedCount":  0,
                              "SkippedCount":  0
                          },
                          {
                              "RunNumber":  3,
-                             "DurationSeconds":  9.7390287,
+                             "DurationSeconds":  0.9731728,
                              "PassedCount":  5,
                              "FailedCount":  0,
                              "SkippedCount":  0
                          }
                      ],
-    "MedianSeconds":  9.739,
+    "MedianSeconds":  1.7236,
     "BaselineMedianSeconds":  3.4814,
     "AllowedRegressionPercent":  25,
-    "DeltaSeconds":  6.2576,
-    "DeltaPercent":  179.74,
-    "RegressionDetected":  true,
-    "Status":  "AdvisoryRegressionDetected",
+    "DeltaSeconds":  -1.7578,
+    "DeltaPercent":  -50.49,
+    "RegressionDetected":  false,
+    "Status":  "WithinBaseline",
     "SourceCommit":  "c0ec30541ac2bd4648e49bf40380d5894d76734a",
     "Notes":  "Seeded from the first committed 38-test Pester artifact after the standalone script changes.",
     "OutTxtPath":  "C:\\Users\\Bob\\.codex\\worktrees\\51b8\\Script.PowerShell5.1\\artifacts\\validation\\printer-export-performance.txt",

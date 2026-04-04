@@ -2,29 +2,60 @@
     . (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
 
     BeforeAll {
-$script:BasicModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\Printer\Export.printer.list.BASIC.ps1'
+        $script:BasicModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\Printer\Export.printer.list.BASIC.ps1'
+        $script:FullModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\Printer\Export.printer.list.FULL.ps1'
     }
 
     AfterAll {
         if ($null -ne $script:BasicModuleInfo) {
             Remove-Module -Name $script:BasicModuleInfo.ModuleName -Force -ErrorAction SilentlyContinue
         }
+
+        if ($null -ne $script:FullModuleInfo) {
+            Remove-Module -Name $script:FullModuleInfo.ModuleName -Force -ErrorAction SilentlyContinue
+        }
     }
 
     It 'uses a secured per-user path and unique file name for the basic export preview' {
-$Result = Invoke-WhatIfScriptObject -RelativeScriptPath 'PowerShell Script\Printer\Export.printer.list.BASIC.ps1'
+        $moduleName = $script:BasicModuleInfo.ModuleName
 
-        $Result.Object | Should -Not -BeNullOrEmpty
-        $Result.Object.OutputPath | Should -Match 'sysadmin-main\\Exports\\Printers\\printers-basic-'
-        $Result.Object.OutputPath | Should -Not -Match 'C:\\Temp'
+        InModuleScope $moduleName {
+            Mock Test-Path { $false }
+            Mock Get-Printer { throw 'Synthetic Get-Printer failure for WhatIf preview' }
+
+            $result = Invoke-BasicPrinterExport `
+                -OutputDirectory (Join-Path $StorageRoot 'Exports\Printers') `
+                -OutputFileNamePrefix 'printers-basic' `
+                -Properties @('Name') `
+                -WhatIf
+
+            $result | Should -Not -BeNullOrEmpty
+            $result.OutputPath | Should -Match 'sysadmin-main\\Exports\\Printers\\printers-basic-'
+            $result.OutputPath | Should -Not -Match 'C:\\Temp'
+            $result.Status | Should -Be 'Skipped'
+            $result.Reason | Should -Be 'GetPrinterUnavailable'
+        }
     }
 
     It 'uses a secured per-user path and unique file name for the full export preview' {
-$Result = Invoke-WhatIfScriptObject -RelativeScriptPath 'PowerShell Script\Printer\Export.printer.list.FULL.ps1'
+        $moduleName = $script:FullModuleInfo.ModuleName
 
-        $Result.Object | Should -Not -BeNullOrEmpty
-        $Result.Object.OutputPath | Should -Match 'sysadmin-main\\Exports\\Printers\\printers-full-'
-        $Result.Object.OutputPath | Should -Not -Match 'C:\\Temp'
+        InModuleScope $moduleName {
+            Mock Test-Path { $false }
+            Mock Get-Printer { throw 'Synthetic Get-Printer failure for WhatIf preview' }
+
+            $result = Invoke-FullPrinterExport `
+                -OutputDirectory (Join-Path $StorageRoot 'Exports\Printers') `
+                -OutputFileNamePrefix 'printers-full' `
+                -Properties @('Name') `
+                -WhatIf
+
+            $result | Should -Not -BeNullOrEmpty
+            $result.OutputPath | Should -Match 'sysadmin-main\\Exports\\Printers\\printers-full-'
+            $result.OutputPath | Should -Not -Match 'C:\\Temp'
+            $result.Status | Should -Be 'Skipped'
+            $result.Reason | Should -Be 'GetPrinterUnavailable'
+        }
     }
 
     It 'restricts the export directory in code' {

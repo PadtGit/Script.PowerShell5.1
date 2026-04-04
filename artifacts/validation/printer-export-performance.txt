@@ -1,15 +1,15 @@
 ﻿Printer Export Performance Check
-Generated : 2026-04-03 22:29:08
+Generated : 2026-04-03 22:42:05
 Suite     : C:\Users\Bob\.codex\worktrees\51b8\Script.PowerShell5.1\tests\Printer\Export.printer.list.Security.Tests.ps1
-Status    : AdvisoryRegressionDetected
+Status    : WithinBaseline
 Runs      : 3
 Baseline  : 3.4814s
-Median    : 9.7390s
-Delta     : +6.2576s (+179.74%)
+Median    : 1.7236s
+Delta     : -1.7578s (-50.49%)
 Threshold : 25.00%
-Regression: True
+Regression: False
 
 Run durations (seconds):
-  - 15.4478
-  - 9.7044
-  - 9.7390
+  - 12.3617
+  - 1.7236
+  - 0.9732

@@ -113,6 +113,18 @@ Invoke-Pester -Configuration $config
 Invoke-Pester -Path '.\tests\tools\Invoke-PSScriptAnalyzer.Tests.ps1'
 ```
 
+- Dedicated printer export performance advisory check:
+
+```powershell
+& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PWD 'tools\Invoke-PrinterExportPerformanceCheck.ps1')
+```
+
+- Focused printer export performance-check regression tests:
+
+```powershell
+Invoke-Pester -Path '.\tests\tools\Invoke-PrinterExportPerformanceCheck.Tests.ps1'
+```
+
 - Trusted local smoke checks:
 
 ```powershell
@@ -184,12 +196,16 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - Clean analyzer runs must overwrite stale JSON findings with `[]`.
 - Analyzer invocation failures should surface as `PSScriptAnalyzerInvocationFailure` diagnostics instead of being silently dropped.
 - `tests\tools\Invoke-PSScriptAnalyzer.Tests.ps1` locks in analyzer crash-handling and stale-artifact reset behavior.
+- `tools\Invoke-PrinterExportPerformanceCheck.ps1` is the dedicated advisory performance checker for `tests\Printer\Export.printer.list.Security.Tests.ps1`; it writes TXT and JSON artifacts under `artifacts\validation\`.
+- `tools\performance-baselines\printer-export-security.json` is the committed baseline for the printer export performance check.
+- `tests\tools\Invoke-PrinterExportPerformanceCheck.Tests.ps1` locks in median calculation, baseline loading, artifact writing, and advisory drift reporting for the printer export checker.
 - CI-style Pester exports results to `artifacts/validation/pester-results.xml`.
 - Pester 5 does not support combining `-CI` with `-Configuration`; use `New-PesterConfiguration` for CI-style NUnit XML output.
 - `sandbox\sysadmin-main-validation.wsb` maps `C:\Users\Bob\Documents\Script.PowerShell5.1` into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main` as read-only with networking and vGPU disabled.
 - `sandbox\Start-SysadminMainSandboxShell.ps1` is the canonical way the Sandbox profile sets the in-Sandbox working directory, resolving the repo root from the helper location instead of depending on a brittle hard-coded path.
 - Keep the in-Sandbox working folder at `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main` so documented validation commands stay stable.
 - The preferred validation finish in this checkout is local analyzer, Pester, smoke checks, artifact review, and optional Sandbox checks for risky scripts.
+- The dedicated printer export performance check is advisory by default; only promote it to a failing gate after the median stabilizes enough to avoid noisy enforcement.
 
 ## Improvement Notes
 
@@ -200,4 +216,5 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - 2026-03-26: Flattened the runtime-specific work for Windows PowerShell 5.1 and preserved the stable in-Sandbox working folder at `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
 - 2026-03-28: Switched the Windows Sandbox profile to a helper script startup path so PowerShell opens consistently in `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
 - 2026-04-02: Added `PLANS.md` as the repo-specific ExecPlan guide and aligned the workflow entrypoints to reference it.
+- 2026-04-03: Added a dedicated advisory printer export performance checker with a committed baseline, focused tool tests, and TXT/JSON validation artifacts.
 - Keep this section focused on durable repo guidance, not task-by-task narrative.

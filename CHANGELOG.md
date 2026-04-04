@@ -25,6 +25,7 @@ This changelog captures weekly repo-level highlights from landed git history and
 ### Rollouts
 
 - Validation is now more explicitly standardized around the recursive analyzer command, pinned `PSScriptAnalyzer 1.25.0`, CI-style `New-PesterConfiguration`, and uploaded artifacts under `artifacts/validation/`.
+- Advisory printer export timing checks now have a dedicated repo-local helper, committed baseline, and focused regression tests before any promotion to hard enforcement.
 - The repo-local agent roster now covers dedicated validation, security-boundary, and behavioral-Pester specialist roles, with `AGENTS.md`, the maintenance skill, and `docs/sysadmin-main-multi-agent-sop.md` kept in sync.
 - Behavioral Pester coverage broadened from contract-style checks toward mocked behavior and side-effect assertions for mirrored V7 and V5 admin scripts.
 - Analyzer output handling is now safer for automation consumers because empty clean runs explicitly reset JSON findings and invocation crashes are recorded as structured diagnostics.

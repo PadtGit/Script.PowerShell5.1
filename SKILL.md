@@ -18,6 +18,8 @@ Use the canonical script tree under `PowerShell Script/`.
 - Pester tests: `tests/`
 - Analyzer runner: `& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PWD 'tools\Invoke-PSScriptAnalyzer.ps1') -Path . -Recurse -SettingsPath (Join-Path $PWD 'tools\PSScriptAnalyzerSettings.psd1') -EnableExit -ExitCodeMode AllDiagnostics`
 - Analyzer regression tests: `Invoke-Pester -Path '.\tests\tools\Invoke-PSScriptAnalyzer.Tests.ps1'`
+- Printer export performance advisory check: `& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PWD 'tools\Invoke-PrinterExportPerformanceCheck.ps1')`
+- Printer export performance-check regression tests: `Invoke-Pester -Path '.\tests\tools\Invoke-PrinterExportPerformanceCheck.Tests.ps1'`
 
 ## Detailed Workflow
 

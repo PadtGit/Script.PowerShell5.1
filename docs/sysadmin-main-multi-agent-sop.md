@@ -62,8 +62,10 @@
 
 - Use the repo-wide recursive analyzer command with `tools\Invoke-PSScriptAnalyzer.ps1`, `tools\PSScriptAnalyzerSettings.psd1`, `-EnableExit`, and `-ExitCodeMode AllDiagnostics`.
 - Remember that the analyzer helper now writes TXT, JSON, and SARIF outputs to `artifacts/validation/` by default.
+- Use `tools\Invoke-PrinterExportPerformanceCheck.ps1` for advisory repeated-run timing on `tests\Printer\Export.printer.list.Security.Tests.ps1`; it writes TXT and JSON outputs to `artifacts/validation/` and should stay advisory until the baseline is stable enough for enforcement.
 - Use the CI-style Pester configuration that writes results to `artifacts/validation/pester-results.xml`.
 - Keep the focused analyzer-helper regression suite at `tests/tools/Invoke-PSScriptAnalyzer.Tests.ps1` in the validation loop when changing analyzer output or failure-handling behavior.
+- Keep `tests/tools/Invoke-PrinterExportPerformanceCheck.Tests.ps1` in the validation loop when changing the printer export performance checker or its baseline/reporting contract.
 - Keep smoke checks focused on the trusted `-WhatIf` commands documented in `AGENTS.md`.
 - Use `sandbox/sysadmin-main-validation.wsb` as the disposable validation shell for risky scripts. The profile maps `C:\Users\Bob\Documents\Script.PowerShell5.1` read-only into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`, disables networking and vGPU, and starts PowerShell through `sandbox/Start-SysadminMainSandboxShell.ps1`, which resolves the repo root from the helper location so the working directory lands there consistently.
 - This checkout does not currently include a GitHub workflow file, so local validation commands are the authoritative workflow surface here.

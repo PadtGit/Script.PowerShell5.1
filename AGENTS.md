@@ -6,8 +6,8 @@
 - Treat `PowerShell Script/*` as the canonical working tree.
 - Keep runtime scripts under `PowerShell Script/*` copyable as single files for PC-side use. When an original script still has baked-in launch-time defaults, add a sibling `.Standalone.ps1` copy rather than changing that original contract.
 - This checkout currently contains local script, test, tool, docs, sandbox, and validation-artifact surfaces only.
-- Historical notes in `CHANGELOG.md` may mention `.agents/`, `.codex/agents/`, or `.github/workflows/` from fuller upstream layouts; do not assume those paths exist in this workspace.
-- `AGENTS.md`, `PLANS.md`, `SKILL.md`, `README.md`, and `docs/*` are the local workflow entrypoints and should stay aligned when commands or durable guidance change.
+- Historical notes in `CHANGELOG.md` may describe fuller upstream layouts; verify paths against this checkout before reusing copied workflow notes or commands.
+- `AGENTS.md` is the canonical playbook for workflow commands and safety guidance. Keep `PLANS.md`, `SKILL.md`, `README.md`, and `docs/*` aligned with it when durable workflow guidance changes.
 - Generated validation output belongs under `artifacts/validation/`, not tracked root-level result files.
 - Prefer small, reversible changes over bulk rewrites.
 
@@ -47,6 +47,8 @@ In this checkout, follow `PLANS.md` from the repository root for ExecPlan struct
 - Prefer summary-style output and optional logging over noisy item-by-item transcript behavior by default.
 
 ## Validation Commands
+
+These command blocks are the canonical workflow copy for this checkout. Shorter entrypoint docs should point back here instead of restating them unless a task needs a tighter, task-specific excerpt.
 
 - Targeted `-WhatIf` validation:
 
@@ -134,6 +136,8 @@ Get-Content '.\artifacts\validation\psscriptanalyzer.json' -Raw | ConvertFrom-Js
 Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 ```
 
+The Sandbox profile maps the repo read-only. Use it for disposable preview and manual validation, and review persistent `artifacts/validation/` outputs from the host checkout unless you intentionally capture them to a disposable in-Sandbox path.
+
 ## Workflow Rounds
 
 1. Explore
@@ -152,6 +156,7 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
    - Run the standard analyzer command, appropriate Pester scope, trusted smoke checks, and Windows Sandbox validation for risky scripts.
 6. Review generated artifacts
    - Inspect `artifacts/validation/` outputs after analyzer, Pester, or `-WhatIf` runs.
+   - Treat Windows Sandbox as disposable preview/manual validation only; review persistent artifacts from the host checkout because the repo mapping is read-only.
    - Clean analyzer reruns should reset JSON findings to `[]`, and analyzer invocation failures should appear as structured diagnostics instead of disappearing silently.
 7. Playbook sync
    - Sync `AGENTS.md`, `PLANS.md`, `SKILL.md`, `README.md`, and `docs/*` whenever durable repo knowledge or validation commands change.
@@ -172,8 +177,8 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 
 ## Known Pitfalls and Discoveries
 
-- This repo is PowerShell-only; keep AutoHotkey automation in a separate repository instead of reintroducing an AutoHotkey subtree under this tree.
-- Historical docs or notes may mention `.agents/`, `.codex/agents/`, or `.github/workflows/`; verify the current checkout before relying on those paths.
+- This repo is PowerShell-only; keep unrelated automation trees out of this checkout.
+- Historical docs or notes may describe fuller upstream layouts; verify the current checkout before relying on copied paths or workflow snippets.
 - Imported files may carry `Zone.Identifier`; validation commands should keep `-ExecutionPolicy Bypass` even after local MOTW cleanup.
 - Runtime scripts under `PowerShell Script/*` are the copy-to-PC surfaces. Repo-root validators, `tools/*`, `tests/*`, and `sandbox/*` still assume the local checkout layout.
 - In service-control scripts, restart should depend on whether this invocation actually stopped the service, not only on the initial service state.
@@ -189,7 +194,8 @@ Start-Process '.\sandbox\sysadmin-main-validation.wsb'
 - `sandbox\sysadmin-main-validation.wsb` maps `C:\Users\Bob\Documents\Script.PowerShell5.1` into `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main` as read-only with networking and vGPU disabled.
 - `sandbox\Start-SysadminMainSandboxShell.ps1` is the canonical way the Sandbox profile sets the in-Sandbox working directory, resolving the repo root from the helper location instead of depending on a brittle hard-coded path.
 - Keep the in-Sandbox working folder at `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main` so documented validation commands stay stable.
-- The preferred validation finish in this checkout is local analyzer, Pester, smoke checks, artifact review, and optional Sandbox checks for risky scripts.
+- Because the Sandbox repo mapping is read-only, persistent `artifacts/validation/` review belongs to the host checkout unless output is explicitly redirected to a disposable in-Sandbox path.
+- The preferred validation finish in this checkout is local analyzer, Pester, smoke checks, host-side artifact review, and optional Sandbox checks for risky scripts.
 
 ## Improvement Notes
 

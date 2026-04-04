@@ -7,18 +7,15 @@ Use the canonical script tree under `PowerShell Script/`.
 - This branch supports Windows PowerShell 5.1 only.
 - `PowerShell Script/*` is the primary implementation surface.
 - Runtime scripts under `PowerShell Script/*` should stay single-file portable for PC-side use; when a script needs a repo-free launch path, add a sibling `.Standalone.ps1` copy instead of changing the original script contract.
-- Keep `Set-StrictMode -Version 3.0`, `$ErrorActionPreference = 'Stop'`, and `SupportsShouldProcess` behavior intact unless the task explicitly changes them.
+- Preserve `Set-StrictMode -Version 3.0`, `$ErrorActionPreference = 'Stop'`, and `SupportsShouldProcess` behavior unless the task explicitly changes them.
 - Preserve usable `-WhatIf` behavior wherever the script already supports safe preview without elevation.
 - Write generated validation output to `artifacts/validation/`, not to tracked repo files.
-- Do not assume `.agents/`, `.codex/agents/`, or `.github/workflows/` exist in this checkout just because older notes or changelog entries mention them.
+- Treat copied workflow notes as suspect until they match the current checkout layout.
 
-## Validation Entry Points
+## Canonical References
 
-- Root validator: `Invoke-WhatIfValidation.ps1`
-- Pester tests: `tests/`
-- Analyzer runner: `& "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PWD 'tools\Invoke-PSScriptAnalyzer.ps1') -Path . -Recurse -SettingsPath (Join-Path $PWD 'tools\PSScriptAnalyzerSettings.psd1') -EnableExit -ExitCodeMode AllDiagnostics`
-- Analyzer regression tests: `Invoke-Pester -Path '.\tests\tools\Invoke-PSScriptAnalyzer.Tests.ps1'`
-
-## Detailed Workflow
-
-Use `AGENTS.md` for the full playbook, `PLANS.md` for repo-specific ExecPlan requirements, and `docs/sysadmin-main-multi-agent-sop.md` for the longer role and workflow notes that match this checkout.
+- `AGENTS.md`: canonical workflow playbook, safety guidance, and validation commands.
+- `PLANS.md`: ExecPlan structure and maintenance rules for `plan.md`.
+- `docs/sysadmin-main-multi-agent-sop.md`: workflow responsibilities and validation ownership.
+- `docs/windows-sandbox-validation.md`: Windows Sandbox usage and read-only mapping caveats.
+- `CHANGELOG.md`: landed history and historical context, not current operating instructions.

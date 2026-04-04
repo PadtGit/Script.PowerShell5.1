@@ -12,7 +12,7 @@ The default active ExecPlan filename in this checkout is `plan.md` at the reposi
 
 ## Repository Assumptions You Must Repeat Inside Every ExecPlan
 
-Every ExecPlan must restate the repository facts it depends on. Do not assume the reader has already opened `AGENTS.md` or `SKILL.md`.
+Every ExecPlan must restate the repository facts it depends on. Do not assume the reader has already opened `AGENTS.md` or `SKILL.md`. `AGENTS.md` remains the canonical source for workflow commands in this checkout; if a plan repeats a command, keep it aligned with that file.
 
 - This branch supports Windows PowerShell 5.1 only.
 - Treat `PowerShell Script/` as the canonical runtime script tree.
@@ -20,7 +20,7 @@ Every ExecPlan must restate the repository facts it depends on. Do not assume th
 - If an original runtime script still has fixed launch-time defaults, add a sibling `.Standalone.ps1` copy rather than changing that original launch contract.
 - Generated validation output belongs under `artifacts/validation/`.
 - Repo-root tools, tests, and sandbox helpers assume the local checkout layout even though runtime scripts are copy-to-PC surfaces.
-- Historical notes may mention `.agents/`, `.codex/agents/`, or `.github/workflows/`; this checkout does not guarantee those paths exist.
+- Historical notes may describe fuller upstream layouts; this checkout does not guarantee those paths exist.
 
 If the plan touches workflow guidance, the plan must also say that `AGENTS.md`, `PLANS.md`, `SKILL.md`, `README.md`, and affected files under `docs/` need to stay aligned in the same change set.
 
@@ -94,6 +94,8 @@ Keep the plan safe to retry. If a command can be re-run, say so. If a step can f
 
 Every ExecPlan must include the exact validation commands appropriate to the change. Do not hand-wave with "run tests." Use concrete commands from the repo and explain what the reader should observe.
 
+`AGENTS.md` owns the canonical command blocks for this checkout. When an ExecPlan quotes a command, copy it from `AGENTS.md` and then describe the expected observation or success condition.
+
 For script behavior that already supports preview safely, include a targeted `-WhatIf` command such as:
 
     Working directory: C:\Users\Bob\Documents\Script.PowerShell5.1
@@ -142,7 +144,7 @@ For general test coverage, use one of these Pester commands and say why that sco
       $config.TestResult.OutputFormat = 'NUnitXml'
       Invoke-Pester -Configuration $config
 
-If the task changes a risky script, the plan should also describe Windows Sandbox validation using `sandbox/sysadmin-main-validation.wsb` and the expected in-Sandbox working directory `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
+If the task changes a risky script, the plan should also describe Windows Sandbox validation using `sandbox/sysadmin-main-validation.wsb` and the expected in-Sandbox working directory `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`. Note that the mapped repo is read-only in Sandbox, so persistent `artifacts/validation/` review still belongs to the host checkout unless the plan intentionally redirects output to a disposable in-Sandbox path.
 
 Every validation section must say what success looks like. Examples:
 

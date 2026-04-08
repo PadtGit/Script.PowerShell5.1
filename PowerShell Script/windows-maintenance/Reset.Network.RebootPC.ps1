@@ -99,6 +99,10 @@ function Invoke-NetworkReset {
 
     if ($PSCmdlet.ShouldProcess('Local computer', ('Restart in {0} seconds' -f $RebootDelaySeconds))) {
         & $ShutdownPath /r /t $RebootDelaySeconds /f | Out-Null
+
+        if ($LASTEXITCODE -ne 0) {
+            throw ('Restart scheduling failed. Exit code: {0}' -f $LASTEXITCODE)
+        }
     }
 
     if ($WhatIfPreference) {

@@ -187,8 +187,13 @@ function Invoke-WindowsCacheCleanup {
 
             foreach ($UpdateItem in $UpdateItems) {
                 if ($PSCmdlet.ShouldProcess($UpdateItem.FullName, 'Remove update cache item')) {
-                    Remove-Item -LiteralPath $UpdateItem.FullName -Recurse -Force -ErrorAction SilentlyContinue
-                    $RemovedCount++
+                    try {
+                        Remove-Item -LiteralPath $UpdateItem.FullName -Recurse -Force -ErrorAction Stop
+                        $RemovedCount++
+                    }
+                    catch {
+                        Write-Verbose ('Failed to remove update cache item: {0}' -f $UpdateItem.FullName)
+                    }
                 }
             }
         }
@@ -210,8 +215,13 @@ function Invoke-WindowsCacheCleanup {
 
         foreach ($CleanupItem in $CleanupItems) {
             if ($PSCmdlet.ShouldProcess($CleanupItem.FullName, 'Remove cache item')) {
-                Remove-Item -LiteralPath $CleanupItem.FullName -Recurse -Force -ErrorAction SilentlyContinue
-                $RemovedCount++
+                try {
+                    Remove-Item -LiteralPath $CleanupItem.FullName -Recurse -Force -ErrorAction Stop
+                    $RemovedCount++
+                }
+                catch {
+                    Write-Verbose ('Failed to remove cache item: {0}' -f $CleanupItem.FullName)
+                }
             }
         }
     }

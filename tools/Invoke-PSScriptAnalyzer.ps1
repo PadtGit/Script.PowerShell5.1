@@ -708,6 +708,16 @@ $TargetFiles = Resolve-AnalyzerTargets `
 if (-not $TargetFiles -or @($TargetFiles).Count -eq 0) {
     Write-Host 'No PowerShell files found for analysis.'
     Set-Content -LiteralPath $OutTxtPath -Value 'No PowerShell files found for analysis.' -Encoding UTF8
+    Set-Content -LiteralPath $OutJsonPath -Value '[]' -Encoding UTF8
+    [ordered]@{
+        '$schema' = 'https://json.schemastore.org/sarif-2.1.0.json'
+        version   = '2.1.0'
+        runs      = @(@{
+            tool    = @{ driver = @{ name = 'PSScriptAnalyzer'; semanticVersion = $LoadedModule.Version.ToString(); rules = @() } }
+            results = @()
+        })
+    } | ConvertTo-Json -Depth 20 |
+        Set-Content -Path $OutSarifPath -Encoding UTF8
     if ($EnableExit) { exit 0 }
     return
 }

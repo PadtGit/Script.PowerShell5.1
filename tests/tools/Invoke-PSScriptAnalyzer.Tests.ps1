@@ -135,4 +135,42 @@ function Measure-ThrowingRule {
             Remove-Item -LiteralPath $tempRoot -Recurse -Force -ErrorAction SilentlyContinue
         }
     }
+
+    It 'resets stale JSON and SARIF artifacts when no PowerShell targets are resolved' {
+        $tempRoot = Join-Path ([System.IO.Path]::GetTempPath()) ([guid]::NewGuid().ToString('N'))
+        $null = New-Item -ItemType Directory -Path $tempRoot -Force
+
+        try {
+            $missingPath = Join-Path $tempRoot 'Missing'
+            $txtPath = Join-Path $tempRoot 'psscriptanalyzer.txt'
+            $jsonPath = Join-Path $tempRoot 'psscriptanalyzer.json'
+            $sarifPath = Join-Path $tempRoot 'psscriptanalyzer.sarif'
+
+            Set-Content -LiteralPath $jsonPath -Encoding UTF8 -Value '[{"RuleName":"StaleFinding"}]'
+            Set-Content -LiteralPath $sarifPath -Encoding UTF8 -Value '{"runs":[{"results":[{"ruleId":"StaleFinding"}]}]}'
+
+            $outputLines = @(
+                & $script:PowerShellPath `
+                    -NoProfile `
+                    -ExecutionPolicy Bypass `
+                    -File $script:ToolPath `
+                    -Path $missingPath `
+                    -SettingsPath $script:SettingsPath `
+                    -OutTxtPath $txtPath `
+                    -OutJsonPath $jsonPath `
+                    -OutSarifPath $sarifPath 2>&1 |
+                    ForEach-Object { $_.ToString() }
+            )
+            $exitCode = $LASTEXITCODE
+            $sarif = Get-Content -LiteralPath $sarifPath -Raw | ConvertFrom-Json
+
+            $exitCode | Should -Be 0
+            ($outputLines -join [Environment]::NewLine) | Should -Match 'No PowerShell files found for analysis\.'
+            ((Get-Content -LiteralPath $jsonPath -Raw).Trim()) | Should -Be '[]'
+            @($sarif.runs[0].results).Count | Should -Be 0
+        }
+        finally {
+            Remove-Item -LiteralPath $tempRoot -Recurse -Force -ErrorAction SilentlyContinue
+        }
+    }
 }

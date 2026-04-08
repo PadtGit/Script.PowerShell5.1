@@ -4,6 +4,12 @@ Describe 'V5 simple spool cleanup' {
 
     BeforeAll {
         . (Resolve-Path (Join-Path $PSScriptRoot '..\TestHelpers.ps1')).Path
+        try {
+            Add-Type -AssemblyName 'System.ServiceProcess' -ErrorAction Stop
+        }
+        catch {
+            Add-Type -AssemblyName 'System.ServiceProcess.ServiceController' -ErrorAction Stop
+        }
         $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell Script\Printer\Restart.Spool.DeletePrinterQSimple.ps1'
     }
 
@@ -55,6 +61,7 @@ Describe 'V5 simple spool cleanup' {
                     -ServiceName 'Spooler' `
                     -SpoolDirectory $spoolDirectory `
                     -SpoolAllowedRoots @($spoolRoot) `
+                    -TimeoutSeconds 30 `
                     -AllowedExtensions @('.spl', '.shd')
             } | Should -Throw '*reparse point*'
 
@@ -106,6 +113,7 @@ Describe 'V5 simple spool cleanup' {
                 -ServiceName 'Spooler' `
                 -SpoolDirectory $spoolDirectory `
                 -SpoolAllowedRoots @($spoolRoot) `
+                -TimeoutSeconds 30 `
                 -AllowedExtensions @('.spl', '.shd') `
                 -WhatIf
 
@@ -114,6 +122,61 @@ Describe 'V5 simple spool cleanup' {
             $result.Status | Should -Be 'WhatIf'
 
             Assert-MockCalled Remove-Item -Times 0 -Exactly -Scope It
+        } -Parameters @{
+            spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
+            spoolRoot      = 'C:\Windows\System32\spool'
+        }
+    }
+
+    It 'waits for the spooler to stop and start on a non-preview cleanup run' {
+        $moduleName = $script:ModuleInfo.ModuleName
+
+        InModuleScope $moduleName {
+            param($spoolDirectory, $spoolRoot)
+
+            $service = [pscustomobject]@{
+                Status = [System.ServiceProcess.ServiceControllerStatus]::Running
+            }
+            Add-Member -InputObject $service -MemberType ScriptMethod -Name WaitForStatus -Value {
+                param($Status, $Timeout)
+            } -Force
+
+            $spoolDirectoryItem = [System.IO.DirectoryInfo]::new($spoolDirectory)
+            $spoolRootItem = [System.IO.DirectoryInfo]::new($spoolRoot)
+
+            Mock Test-Path {
+                $LiteralPath -in @($spoolDirectory, $spoolRoot)
+            }
+            Mock Get-Item {
+                if ($LiteralPath -eq $spoolRoot) {
+                    return $spoolRootItem
+                }
+
+                return $spoolDirectoryItem
+            }
+            Mock Test-IsReparsePoint { $false }
+            Mock Get-Service { $service }
+            Mock Stop-Service {}
+            Mock Start-Service {}
+            Mock Get-ChildItem { @() } -ParameterFilter { $LiteralPath -eq $spoolDirectory -and $File }
+            Mock Remove-Item {}
+
+            $result = Invoke-SimplePrintQueueCleanup `
+                -RequireAdmin $false `
+                -IsAdministrator $false `
+                -ServiceName 'Spooler' `
+                -SpoolDirectory $spoolDirectory `
+                -SpoolAllowedRoots @($spoolRoot) `
+                -TimeoutSeconds 30 `
+                -AllowedExtensions @('.spl', '.shd')
+
+            $result.FileCount | Should -Be 0
+            $result.DeletedCount | Should -Be 0
+            $result.Status | Should -Be 'Completed'
+
+            Assert-MockCalled Get-Service -Times 3 -Exactly -Scope It
+            Assert-MockCalled Stop-Service -Times 1 -Exactly -Scope It
+            Assert-MockCalled Start-Service -Times 1 -Exactly -Scope It
         } -Parameters @{
             spoolDirectory = 'C:\Windows\System32\spool\PRINTERS'
             spoolRoot      = 'C:\Windows\System32\spool'

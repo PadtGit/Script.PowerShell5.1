@@ -180,14 +180,27 @@ function Invoke-InstallerOrphanMove {
     $OrphanCount = 0
     $Status = 'Completed'
 
-    foreach ($RegistryItem in @(Get-ChildItem -Path $RegistryRoot -Recurse -ErrorAction SilentlyContinue)) {
+    try {
+        $RegistryItems = @(Get-ChildItem -Path $RegistryRoot -Recurse -ErrorAction Stop)
+    }
+    catch {
+        throw ('Installer reference scan failed for {0}: {1}' -f $RegistryRoot, $_.Exception.Message)
+    }
+
+    foreach ($RegistryItem in $RegistryItems) {
         try {
-            $LocalPackage = [string](Get-ItemProperty -LiteralPath $RegistryItem.PSPath -ErrorAction Stop).LocalPackage
+            $RegistryProperties = Get-ItemProperty -LiteralPath $RegistryItem.PSPath -ErrorAction Stop
         }
         catch {
-            $LocalPackage = ''
+            throw ('Installer reference scan failed reading {0}: {1}' -f $RegistryItem.PSPath, $_.Exception.Message)
         }
 
+        $LocalPackageProperty = $RegistryProperties.PSObject.Properties['LocalPackage']
+        if ($null -eq $LocalPackageProperty) {
+            continue
+        }
+
+        $LocalPackage = [string]$LocalPackageProperty.Value
         if (-not [string]::IsNullOrWhiteSpace($LocalPackage)) {
             $KnownPackages[$LocalPackage.ToLowerInvariant()] = $true
         }

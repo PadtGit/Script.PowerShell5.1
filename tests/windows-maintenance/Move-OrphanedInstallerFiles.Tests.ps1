@@ -187,4 +187,41 @@ $script:ModuleInfo = Import-ScriptModuleForTest -RelativeScriptPath 'PowerShell 
             registryRoot  = 'HKLM:\Software\Test'
         }
     }
+
+    It 'fails closed when the registry reference scan cannot complete' {
+        $moduleName = $script:ModuleInfo.ModuleName
+
+        InModuleScope $moduleName {
+            param($installerPath, $backupPath, $storageRoot, $registryRoot)
+
+            $script:StorageRoot = $storageRoot
+
+            $installerDirectory = [System.IO.DirectoryInfo]::new($installerPath)
+
+            Mock Test-Path { $LiteralPath -eq $installerPath }
+            Mock Get-Item { $installerDirectory } -ParameterFilter { $LiteralPath -eq $installerPath }
+            Mock Get-ChildItem { throw 'simulated registry scan failure' } -ParameterFilter { $Path -eq $registryRoot -and $Recurse }
+            Mock Test-IsReparsePoint { $false }
+            Mock Resolve-SecureDirectory { $Path }
+            Mock Move-Item {}
+
+            {
+                Invoke-OrphanedInstallerMove `
+                    -RequireAdmin $false `
+                    -IsAdministrator $false `
+                    -InstallerPath $installerPath `
+                    -BackupPath $backupPath `
+                    -RegistryRoot $registryRoot `
+                    -AllowedExtensions @('.msi', '.msp')
+            } | Should -Throw '*Installer reference scan failed*'
+
+            Assert-MockCalled Resolve-SecureDirectory -Times 0 -Exactly -Scope It
+            Assert-MockCalled Move-Item -Times 0 -Exactly -Scope It
+        } -Parameters @{
+            installerPath = 'C:\TestData\Installer'
+            backupPath    = 'C:\ProgramData\sysadmin-main\Quarantine\InstallerOrphans'
+            storageRoot   = 'C:\ProgramData\sysadmin-main'
+            registryRoot  = 'HKLM:\Software\Test'
+        }
+    }
 }

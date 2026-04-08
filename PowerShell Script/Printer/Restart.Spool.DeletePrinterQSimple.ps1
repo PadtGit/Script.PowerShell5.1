@@ -11,6 +11,7 @@ $IsAdministrator = ([Security.Principal.WindowsPrincipal] [Security.Principal.Wi
 $ServiceName = 'Spooler'
 $SpoolDirectory = Join-Path -Path $env:SystemRoot -ChildPath 'System32\spool\PRINTERS'
 $SpoolAllowedRoots = @(Join-Path -Path $env:SystemRoot -ChildPath 'System32\spool')
+$TimeoutSeconds = 30
 $AllowedExtensions = @('.spl', '.shd')
 
 function Test-PathWithinAllowedRoot {
@@ -106,6 +107,9 @@ function Invoke-SimplePrintQueueCleanup {
         [string[]]$SpoolAllowedRoots,
 
         [Parameter(Mandatory = $true)]
+        [int]$TimeoutSeconds,
+
+        [Parameter(Mandatory = $true)]
         [string[]]$AllowedExtensions
     )
 
@@ -122,6 +126,7 @@ function Invoke-SimplePrintQueueCleanup {
 
     if ($ServiceWasRunning -and $PSCmdlet.ShouldProcess($ServiceName, 'Stop service')) {
         Stop-Service -Name $ServiceName -Force -ErrorAction Stop
+        (Get-Service -Name $ServiceName -ErrorAction Stop).WaitForStatus([System.ServiceProcess.ServiceControllerStatus]::Stopped, [TimeSpan]::FromSeconds($TimeoutSeconds))
         $ServiceWasStopped = $true
     }
 
@@ -144,6 +149,7 @@ function Invoke-SimplePrintQueueCleanup {
     finally {
         if ($ServiceWasStopped -and $PSCmdlet.ShouldProcess($ServiceName, 'Start service')) {
             Start-Service -Name $ServiceName -ErrorAction Stop
+            (Get-Service -Name $ServiceName -ErrorAction Stop).WaitForStatus([System.ServiceProcess.ServiceControllerStatus]::Running, [TimeSpan]::FromSeconds($TimeoutSeconds))
         }
     }
 
@@ -167,6 +173,7 @@ try {
         -ServiceName $ServiceName `
         -SpoolDirectory $SpoolDirectory `
         -SpoolAllowedRoots $SpoolAllowedRoots `
+        -TimeoutSeconds $TimeoutSeconds `
         -AllowedExtensions $AllowedExtensions
 }
 catch {

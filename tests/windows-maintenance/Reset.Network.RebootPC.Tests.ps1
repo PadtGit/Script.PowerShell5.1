@@ -46,4 +46,42 @@ $Result = Invoke-WhatIfScriptObject -RelativeScriptPath 'PowerShell Script\windo
             $result.Reason | Should -Be 'NetworkResetUnsupportedInWindowsSandbox'
         }
     }
+
+    It 'fails when reboot scheduling returns a non-zero exit code' {
+        $moduleName = $script:ModuleInfo.ModuleName
+        $tempRoot = Join-Path ([System.IO.Path]::GetTempPath()) ([guid]::NewGuid().ToString('N'))
+        $null = New-Item -ItemType Directory -Path $tempRoot -Force
+        $shutdownPath = Join-Path $tempRoot 'fail-shutdown.cmd'
+        $commandPath = Join-Path $tempRoot 'noop.cmd'
+
+        try {
+            Set-Content -LiteralPath $shutdownPath -Encoding ASCII -Value "@echo off`r`nexit /b 5`r`n"
+            Set-Content -LiteralPath $commandPath -Encoding ASCII -Value "@echo off`r`nexit /b 0`r`n"
+
+            InModuleScope $moduleName {
+                param($shutdownPath, $commandPath)
+
+                {
+                    Invoke-NetworkReset `
+                        -RequireAdmin $false `
+                        -IsAdministrator $true `
+                        -IsWindowsSandbox $false `
+                        -Commands @(
+                            @{
+                                FilePath  = $commandPath
+                                Arguments = @()
+                            }
+                        ) `
+                        -ShutdownPath $shutdownPath `
+                        -RebootDelaySeconds 5
+                } | Should -Throw '*Restart scheduling failed*'
+            } -Parameters @{
+                shutdownPath = $shutdownPath
+                commandPath  = $commandPath
+            }
+        }
+        finally {
+            Remove-Item -LiteralPath $tempRoot -Recurse -Force -ErrorAction SilentlyContinue
+        }
+    }
 }

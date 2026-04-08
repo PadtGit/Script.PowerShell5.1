@@ -2,14 +2,17 @@
 
 [CmdletBinding()]
 param(
-    [string]$ResultPath = ''
+    [string]$ResultPath = '',
+    [string]$PowerShellPath = ''
 )
 
 Set-StrictMode -Version 3.0
 $ErrorActionPreference = 'Stop'
 
 $BasePath = Join-Path -Path $PSScriptRoot -ChildPath 'PowerShell Script'
-$PowerShellPath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\WindowsPowerShell\v1.0\powershell.exe'
+if ([string]::IsNullOrWhiteSpace($PowerShellPath)) {
+    $PowerShellPath = Join-Path -Path $env:SystemRoot -ChildPath 'System32\WindowsPowerShell\v1.0\powershell.exe'
+}
 
 if ([string]::IsNullOrWhiteSpace($ResultPath)) {
     $ResultPath = Join-Path -Path $PSScriptRoot -ChildPath 'artifacts\validation\whatif-validation.txt'
@@ -69,12 +72,35 @@ function Invoke-WhatIfValidation {
         }
 
         $CurrentErrorActionPreference = $ErrorActionPreference
-        $ErrorActionPreference = 'Continue'
-        $OutputLines = @(
-            & $PowerShellPath -NoProfile -ExecutionPolicy Bypass -File $ScriptPath -WhatIf 2>&1 |
-                ForEach-Object { $_.ToString() }
-        )
-        $ExitCode = $LASTEXITCODE
+        $OutputLines = @()
+        $ExitCode = 1
+
+        if (-not (Test-Path -LiteralPath $PowerShellPath -PathType Leaf)) {
+            $OutputLines = @(
+                'Invocation failed: PowerShell executable not found: {0}' -f $PowerShellPath
+            )
+            $ExitCode = 1
+        }
+        else {
+            try {
+                $ErrorActionPreference = 'Continue'
+                $OutputLines = @(
+                    & $PowerShellPath -NoProfile -ExecutionPolicy Bypass -File $ScriptPath -WhatIf 2>&1 |
+                        ForEach-Object { $_.ToString() }
+                )
+                $ExitCode = $LASTEXITCODE
+            }
+            catch {
+                $OutputLines = @(
+                    'Invocation failed: {0}' -f $_.Exception.Message
+                )
+                $ExitCode = 1
+            }
+            finally {
+                $ErrorActionPreference = $CurrentErrorActionPreference
+            }
+        }
+
         $ErrorActionPreference = $CurrentErrorActionPreference
 
         $Results += [pscustomobject]@{

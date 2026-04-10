@@ -16,6 +16,7 @@
 - Generated validation output belongs under `artifacts/validation/` in the local checkout.
 - This branch supports Windows PowerShell 5.1 only.
 - Preserve `Set-StrictMode -Version 3.0`, `$ErrorActionPreference = 'Stop'`, and `SupportsShouldProcess`.
+- Keep local validation tooling pinned to `PSScriptAnalyzer 1.25.0` and `Pester 5.7.1` unless the task is an intentional dependency migration.
 - Prefer truthful `-WhatIf` preview behavior wherever a script can support it safely.
 - Historical notes may describe fuller upstream layouts; confirm the current checkout before following copied commands verbatim.
 

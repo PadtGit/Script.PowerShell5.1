@@ -6,4 +6,6 @@ This checkout is the local script, tool, test, docs, sandbox, and validation-art
 
 Use `AGENTS.md` for the canonical playbook, safety invariants, and validation commands. Use `PLANS.md` for ExecPlan requirements, `SKILL.md` for the short working rules, `docs/sysadmin-main-multi-agent-sop.md` for workflow responsibilities, `docs/windows-sandbox-validation.md` for Windows Sandbox guidance, and `CHANGELOG.md` for landed history.
 
+For reproducible local validation, follow the pinned tooling baseline in `AGENTS.md`: `PSScriptAnalyzer 1.25.0` and `Pester 5.7.1`.
+
 Historical notes may describe fuller upstream layouts. Verify paths against this checkout before reusing copied workflow instructions.

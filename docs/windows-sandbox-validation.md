@@ -16,6 +16,7 @@ Use Windows Sandbox for manual validation of risky scripts such as:
 - Sandbox repo path: `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`
 - The host repo is mapped read-only into the Sandbox.
 - This branch keeps the in-Sandbox working folder at `sysadmin-main` so the documented validation commands stay stable after the Windows PowerShell 5.1 branch split.
+- Keep the host-side validation tooling baseline pinned to `PSScriptAnalyzer 1.25.0` and `Pester 5.7.1` so Sandbox observations line up with local analyzer and test runs.
 - Networking is disabled.
 - vGPU is disabled.
 - The logon command starts PowerShell through `sandbox/Start-SysadminMainSandboxShell.ps1`, which resolves the repo root relative to the helper script and sets that as the working location. In Sandbox this resolves to `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.

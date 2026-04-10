@@ -88,6 +88,13 @@ New-Item -ItemType Directory -Force -Path $artifactRoot | Out-Null
   -ExitCodeMode AllDiagnostics
 ```
 
+- Validation module bootstrap (only when intentionally bootstrapping a local validation environment):
+
+```powershell
+Install-Module -Name PSScriptAnalyzer -Repository PSGallery -RequiredVersion 1.25.0 -Scope CurrentUser -Force
+Install-Module -Name Pester -Repository PSGallery -RequiredVersion 5.7.1 -Scope CurrentUser -Force
+```
+
 - Basic Pester helper:
 
 ```powershell
@@ -185,6 +192,7 @@ The Sandbox profile maps the repo read-only. Use it for disposable preview and m
 - Generated validation logs belong in `artifacts/validation/`; do not reintroduce tracked root-level result files.
 - The standard analyzer baseline is the repo-wide recursive command using `tools\Invoke-PSScriptAnalyzer.ps1` with `tools\PSScriptAnalyzerSettings.psd1`, `-EnableExit`, and `-ExitCodeMode AllDiagnostics`.
 - Pin PSScriptAnalyzer to version `1.25.0`; use `-AutoInstallModule` only when intentionally bootstrapping a local validation environment.
+- Pin Pester to version `5.7.1` when bootstrapping a validation environment; stay on major version 5 unless a task explicitly carries the migration to Pester 6.
 - `tools\Invoke-PSScriptAnalyzer.ps1` writes `artifacts/validation/psscriptanalyzer.txt`, `artifacts/validation/psscriptanalyzer.json`, and `artifacts/validation/psscriptanalyzer.sarif` by default.
 - Clean analyzer runs must overwrite stale JSON findings with `[]`.
 - Analyzer invocation failures should surface as `PSScriptAnalyzerInvocationFailure` diagnostics instead of being silently dropped.
@@ -206,4 +214,5 @@ The Sandbox profile maps the repo read-only. Use it for disposable preview and m
 - 2026-03-26: Flattened the runtime-specific work for Windows PowerShell 5.1 and preserved the stable in-Sandbox working folder at `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
 - 2026-03-28: Switched the Windows Sandbox profile to a helper script startup path so PowerShell opens consistently in `C:\Users\WDAGUtilityAccount\Desktop\sysadmin-main`.
 - 2026-04-02: Added `PLANS.md` as the repo-specific ExecPlan guide and aligned the workflow entrypoints to reference it.
+- 2026-04-09: Pinned local validation bootstrap guidance to `PSScriptAnalyzer 1.25.0` and `Pester 5.7.1`, and removed the last unpinned analyzer install note.
 - Keep this section focused on durable repo guidance, not task-by-task narrative.

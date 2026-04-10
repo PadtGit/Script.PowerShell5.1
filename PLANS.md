@@ -96,6 +96,8 @@ Every ExecPlan must include the exact validation commands appropriate to the cha
 
 `AGENTS.md` owns the canonical command blocks for this checkout. When an ExecPlan quotes a command, copy it from `AGENTS.md` and then describe the expected observation or success condition.
 
+If the validation environment needs module bootstrap before those commands can run, keep the local tooling baseline pinned to `PSScriptAnalyzer 1.25.0` and `Pester 5.7.1` unless the task explicitly includes a dependency migration.
+
 For script behavior that already supports preview safely, include a targeted `-WhatIf` command such as:
 
     Working directory: C:\Users\Bob\Documents\Script.PowerShell5.1

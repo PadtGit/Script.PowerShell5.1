@@ -1,5 +1,5 @@
-Installation : 
-Install-Module -Name PSScriptAnalyzer -Force -Scope AllUsers
+Installation :
+Install-Module -Name PSScriptAnalyzer -Repository PSGallery -RequiredVersion 1.25.0 -Force -Scope AllUsers
 
-Lance la vérif : 
+Lance la vérif :
 Invoke-ScriptAnalyzer -Path "MonScript.ps1" -Settings "PSScriptAnalyzerSettingsFull.psd1"

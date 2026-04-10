@@ -10,6 +10,7 @@ Use the canonical script tree under `PowerShell Script/`.
 - Preserve `Set-StrictMode -Version 3.0`, `$ErrorActionPreference = 'Stop'`, and `SupportsShouldProcess` behavior unless the task explicitly changes them.
 - Preserve usable `-WhatIf` behavior wherever the script already supports safe preview without elevation.
 - Write generated validation output to `artifacts/validation/`, not to tracked repo files.
+- Keep local validation tooling pinned to `PSScriptAnalyzer 1.25.0` and `Pester 5.7.1` unless the task explicitly migrates that baseline.
 - Treat copied workflow notes as suspect until they match the current checkout layout.
 
 ## Canonical References
